@@ -158,17 +158,39 @@ def employee_dashboard(request):
 @login_required
 def clock_in(request):
     employee = request.user.employee
-    shift = Shift.objects.create(employee=employee, clock_in=datetime.now())
+
+    # Check if the employee already has an active assignment with a NULL clock_in value
+    assignment = EmployeeAssignment.objects.filter(
+        employee=employee, clock_in__isnull=True
+    ).first()
+
+    if assignment:
+        # If an active assignment exists, update its clock_in value
+        assignment.clock_in = datetime.now()
+        assignment.save()
+    else:
+        # If no active assignment exists, create a new assignment
+        assignment = EmployeeAssignment.objects.create(
+            employee=employee, clock_in=datetime.now()
+        )
+
     return redirect("employee_dashboard")
 
 
 @login_required
 def clock_out(request):
     employee = request.user.employee
-    shift = Shift.objects.filter(employee=employee, clock_out__isnull=True).first()
-    if shift:
-        shift.clock_out = datetime.now()
-        shift.save()
+
+    # Find the latest assignment with NULL clock_out value for the employee
+    assignment = EmployeeAssignment.objects.filter(
+        employee=employee, clock_out__isnull=True
+    ).latest("clock_in")
+
+    if assignment and assignment.clock_in:
+        # If a valid assignment is found, update its clock_out value
+        assignment.clock_out = datetime.now()
+        assignment.save()
+
     return redirect("employee_dashboard")
 
 
