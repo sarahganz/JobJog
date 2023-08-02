@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
 
 STATUSES = (
-    ("I", "Complete"),
-    ("C", "Incomplete"),
+    ("I", "InComplete"),
+    ("C", "Complete"),
 )
 
 
@@ -15,7 +15,7 @@ class Job(models.Model):
     address = models.CharField(max_length=100)
     date = models.DateField("Job Date")
     time = models.TimeField(("Job Time"), blank=True)
-    status = models.CharField(max_length=1, choices=STATUSES, default=STATUSES[1][0])
+    status = models.CharField(max_length=1, choices=STATUSES, default=STATUSES[0][0])
 
     def __str__(self):
         return f"{self.description} ({self.id})"
