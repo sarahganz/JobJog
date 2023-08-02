@@ -1,4 +1,3 @@
-
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import Job, Employee, STATUSES, CustomUser, Employer
@@ -62,6 +61,5 @@ class EmployerLoginForm(AuthenticationForm):
         model = CustomUser
         fields = ("username", "password")
 
-from django.forms import ModelForm
-from .models import StatusForm
 
+from django.forms import ModelForm
