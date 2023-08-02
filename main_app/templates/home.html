@@ -1,29 +1,65 @@
-  {% extends 'base.html' %}
-  {% block content %}
+{% extends 'base.html' %} {% block content %}
 
-    <h1>JobJog</h1>
-    <form action="{% url 'signup' %}" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn">Sign Up</button>
-    <form action="{% url 'signin' %}" method="POST">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit" class="btn">Sign In</button>
-    </form>
-    <p>
-      JobJog is a user-friendly web application designed to streamline company operations by empowering employers to efficiently manage their employees' assignments and responsibilities. This comprehensive platform allows companies to easily add new employees, assign work duties, and track workforce performance seamlessly.
-    </p>
-    <h2>Key Features:</h2>
-      <div>
-        <li>Employee Database: The application provides a centralized employee database, where employers can add, view, and manage all employee details. This includes personal information, job roles, contact details, and work history.</li>
-        <li>User Roles and Permissions: The system incorporates multi-level user roles and permissions to ensure that only authorized personnel can access and modify sensitive information.</li>
-        <li>Onboarding: The application facilitates a smooth onboarding process for new employees.</li>
-        <li>Work Duties and Task Assignments: Employers can create and assign work duties, tasks, and projects to specific employees. This feature ensures effective task distribution, allowing managers to prioritize assignments and track progress in real-time.</li>
-        <li>Security and Data Privacy: The application employs robust security measures to protect sensitive employee information and ensure data privacy compliance.</li>
-     </div>
+<h1>JobJog</h1>
+<p>
+  JobJog is a user-friendly web application designed to streamline company
+  operations by empowering employers to efficiently manage their employees'
+  assignments and responsibilities. This comprehensive platform allows companies
+  to easily add new employees, assign work duties, and track workforce
+  performance seamlessly.
+</p>
+<h2>Key Features:</h2>
+<div>
+  <li>
+    Employee Database: The application provides a centralized employee database,
+    where employers can add, view, and manage all employee details. This
+    includes personal information, job roles, contact details, and work history.
+  </li>
+  <li>
+    User Roles and Permissions: The system incorporates multi-level user roles
+    and permissions to ensure that only authorized personnel can access and
+    modify sensitive information.
+  </li>
+  <li>
+    Onboarding: The application facilitates a smooth onboarding process for new
+    employees.
+  </li>
+  <li>
+    Work Duties and Task Assignments: Employers can create and assign work
+    duties, tasks, and projects to specific employees. This feature ensures
+    effective task distribution, allowing managers to prioritize assignments and
+    track progress in real-time.
+  </li>
+  <li>
+    Security and Data Privacy: The application employs robust security measures
+    to protect sensitive employee information and ensure data privacy
+    compliance.
+  </li>
+</div>
 
-    <p>
-      JobJog is a game-changer for companies seeking to enhance employee productivity, improve task management, and maintain a well-organized and efficient workforce. By providing a user-friendly interface, powerful task management tools, and detailed employee insights, the application significantly simplifies the complexities of workforce management, promoting a cohesive and productive work environment.
-    </p>
-  {% endblock %}
+<p>
+  JobJog is a game-changer for companies seeking to enhance employee
+  productivity, improve task management, and maintain a well-organized and
+  efficient workforce. By providing a user-friendly interface, powerful task
+  management tools, and detailed employee insights, the application
+  significantly simplifies the complexities of workforce management, promoting a
+  cohesive and productive work environment.
+</p>
+
+<h2>Employer Registration</h2>
+<form method="post" action="{% url 'employer_registration' %}">
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit">Register</button>
+</form>
+
+<p>
+  Already have an account? <a href="{% url 'employer_login' %}">Sign in</a>.
+</p>
+
+<h2>Employee Login</h2>
+<p>
+  Already have an account? <a href="{% url 'login' %}">Sign in</a> as an
+  Employee.
+</p>
+
+{% endblock %}

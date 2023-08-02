@@ -1,0 +1,11 @@
+<h1>{{ job.description }}</h1>
+<p>Address: {{ job.address }}</p>
+<p>Date: {{ job.date }}</p>
+<p>Time: {{ job.time }}</p>
+<p>Status: {{ job.get_status_display }}</p>
+
+{% if not clocked_in %}
+<a href="{% url 'clock_in' assignment.id %}">Clock In</a>
+{% endif %} {% if clocked_in and not clocked_out %}
+<a href="{% url 'clock_out' assignment.id %}">Clock Out</a>
+{% endif %}

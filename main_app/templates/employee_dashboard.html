@@ -1,0 +1,28 @@
+<h1>Welcome, {{ employee.name }}!</h1>
+<p>Company: {{ employee.employer.company_name }}</p>
+<p>Email: {{ employee.email }}</p>
+<p>Phone: {{ employee.phone_number }}</p>
+
+<h2>Assigned Jobs:</h2>
+{% if assigned_jobs %}
+<ul>
+  {% for assignment in assigned_jobs %}
+  <li>
+    {{ assignment.job.description }} (Status: {{ assignment.get_status_display
+    }}) {% if assignment.clock_in %} (Clock-in: {{ assignment.clock_in|date:'M
+    d, Y H:i' }}) {% endif %} {% if assignment.clock_out %} (Clock-out: {{
+    assignment.clock_out|date:'M d, Y H:i' }}) {% endif %}
+
+    <a href="{% url 'job_details' assignment.job.id %}">View Details</a>
+
+    {% if not assignment.clock_in %}
+    <a href="{% url 'clock_in' assignment.id %}">Clock In</a>
+    {% endif %} {% if assignment.clock_in and not assignment.clock_out %}
+    <a href="{% url 'clock_out' assignment.id %}">Clock Out</a>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No assigned jobs at the moment.</p>
+{% endif %}
