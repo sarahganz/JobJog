@@ -215,24 +215,25 @@ def job_details(request, job_id):
 
 
 def jobs_detail(request, job_id):
-  job = Job.objects.get(id=job_id)
-  return render(request, 'jobs/detail.html', { 'job': job })
+    job = Job.objects.get(id=job_id)
+    return render(request, "jobs/detail.html", {"job": job})
+
 
 def jobs_index(request):
-  jobs = Job.objects.all()
-  return render(request, 'jobs/index.html', {
-    'jobs': jobs
-  })
+    jobs = Job.objects.all()
+    return render(request, "jobs/index.html", {"jobs": jobs})
+
 
 class JobCreate(CreateView):
-  model = Job
-  fields = ['description', 'address', 'date', 'time', 'status']
+    model = Job
+    fields = ["description", "address", "date", "time", "status"]
+
 
 class JobUpdate(UpdateView):
-  model = Job
-  fields = ['description', 'address', 'date', 'time', 'status']
+    model = Job
+    fields = ["description", "address", "date", "time", "status"]
+
 
 class JobDelete(DeleteView):
-  model = Job
-  success_url = '/jobs'
-
+    model = Job
+    success_url = "/jobs"
