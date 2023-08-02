@@ -213,8 +213,6 @@ def job_details(request, job_id):
     job = get_object_or_404(Job, pk=job_id)
     return render(request, "job_details.html", {"job": job})
 
-  return render(request, 'about.html')
-
 
 def jobs_detail(request, job_id):
   job = Job.objects.get(id=job_id)
