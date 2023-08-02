@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
 
 STATUSES = (
-    ("I", "InComplete"),
+    ("I", "Incomplete"),
     ("C", "Complete"),
 )
 
