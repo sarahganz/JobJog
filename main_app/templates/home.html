@@ -1,29 +1,65 @@
-  {% extends 'base.html' %}
-  {% block content %}
+{% extends 'base.html' %}
+{% block content %}
 
-    <h1>JobJog</h1>
-    <form action="{% url 'signup' %}" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn">Sign Up</button>
-    <form action="{% url 'signin' %}" method="POST">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit" class="btn">Sign In</button>
-    </form>
-    <p>
-      JobJog is a user-friendly web application designed to streamline company operations by empowering employers to efficiently manage their employees' assignments and responsibilities. This comprehensive platform allows companies to easily add new employees, assign work duties, and track workforce performance seamlessly.
-    </p>
-    <h2>Key Features:</h2>
-      <div>
-        <li>Employee Database: The application provides a centralized employee database, where employers can add, view, and manage all employee details. This includes personal information, job roles, contact details, and work history.</li>
-        <li>User Roles and Permissions: The system incorporates multi-level user roles and permissions to ensure that only authorized personnel can access and modify sensitive information.</li>
-        <li>Onboarding: The application facilitates a smooth onboarding process for new employees.</li>
-        <li>Work Duties and Task Assignments: Employers can create and assign work duties, tasks, and projects to specific employees. This feature ensures effective task distribution, allowing managers to prioritize assignments and track progress in real-time.</li>
-        <li>Security and Data Privacy: The application employs robust security measures to protect sensitive employee information and ensure data privacy compliance.</li>
-     </div>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #0E2344;
+    color: #FFF;
+    line-height: 1.6;
+    margin: 20px;
+  }
 
-    <p>
-      JobJog is a game-changer for companies seeking to enhance employee productivity, improve task management, and maintain a well-organized and efficient workforce. By providing a user-friendly interface, powerful task management tools, and detailed employee insights, the application significantly simplifies the complexities of workforce management, promoting a cohesive and productive work environment.
-    </p>
-  {% endblock %}
+  h1 {
+    color: #38B6FF;
+  }
+
+  h2 {
+    color: #DF5276;
+  }
+
+  p {
+    margin-bottom: 20px;
+  }
+
+  li {
+    margin-bottom: 10px;
+  }
+
+  /* Styling for the Key Features section */
+  .key-features {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #1C3D73;
+    border-radius: 5px;
+  }
+
+  /* Styling for the Key Features list items */
+  .key-features li {
+    list-style: none;
+    color: #FFF;
+  }
+
+</style>
+
+<h1>JobJog</h1>
+<p>
+  JobJog is a user-friendly web application designed to streamline company operations by empowering employers to efficiently manage their employees' assignments and responsibilities. This comprehensive platform allows companies to easily add new employees, assign work duties, and track workforce performance seamlessly.
+</p>
+
+<h2>Key Features:</h2>
+<div class="key-features">
+  <ul>
+    <li>Employee Database: The application provides a centralized employee database, where employers can add, view, and manage all employee details. This includes personal information, job roles, contact details, and work history.</li>
+    <li>User Roles and Permissions: The system incorporates multi-level user roles and permissions to ensure that only authorized personnel can access and modify sensitive information.</li>
+    <li>Onboarding: The application facilitates a smooth onboarding process for new employees.</li>
+    <li>Work Duties and Task Assignments: Employers can create and assign work duties, tasks, and projects to specific employees. This feature ensures effective task distribution, allowing managers to prioritize assignments and track progress in real-time.</li>
+    <li>Security and Data Privacy: The application employs robust security measures to protect sensitive employee information and ensure data privacy compliance.</li>
+  </ul>
+</div>
+
+<p>
+  JobJog is a game-changer for companies seeking to enhance employee productivity, improve task management, and maintain a well-organized and efficient workforce. By providing a user-friendly interface, powerful task management tools, and detailed employee insights, the application significantly simplifies the complexities of workforce management, promoting a cohesive and productive work environment.
+</p>
+
+{% endblock %}
