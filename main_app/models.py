@@ -47,8 +47,3 @@ class EmployeeAssignment(models.Model):
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
     clock_in = models.DateTimeField(null=True, blank=True)
     clock_out = models.DateTimeField(null=True, blank=True)
-<<<<<<< HEAD
-=======
-
-
->>>>>>> refs/remotes/origin/main
