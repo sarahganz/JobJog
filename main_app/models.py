@@ -24,6 +24,11 @@ class Job(models.Model):
         return reverse("detail", kwargs={"job_id": self.id})
 
 
+STATUS_CHOICES = (
+        ('I', 'Incomplete'),
+        ('C', 'Complete'),
+    )
+
 class CustomUser(AbstractUser):
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
@@ -53,3 +58,21 @@ class EmployeeAssignment(models.Model):
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
     clock_in = models.DateTimeField(null=True, blank=True)
     clock_out = models.DateTimeField(null=True, blank=True)
+
+class Job(models.Model):
+    description = models.CharField(max_length=260)
+    address = models.CharField(max_length=250)
+    date = models.DateField('Job Date')
+    time = models.TimeField((u"Job Time"), blank=True)
+    status = models.CharField(
+        max_length=1,  
+        choices=STATUS_CHOICES,
+        default=STATUS_CHOICES[0][0],  
+    )
+
+    def __str__(self):
+        return f'{self.description} ({self.id})'
+    
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'job_id': self.id})
+
