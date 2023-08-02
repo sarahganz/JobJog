@@ -35,5 +35,11 @@ class JobCreate(CreateView):
   model = Job
   fields = ['description', 'address', 'date', 'time', 'status']
 
+class JobUpdate(UpdateView):
+  model = Job
+  fields = ['description', 'address', 'date', 'time', 'status']
 
+class JobDelete(DeleteView):
+  model = Job
+  success_url = '/jobs'
 
