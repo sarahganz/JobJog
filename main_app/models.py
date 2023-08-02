@@ -11,8 +11,8 @@ STATUSES = (
 
 
 class Job(models.Model):
-    description = models.CharField(max_length=100)
-    address = models.CharField(max_length=100)
+    description = models.CharField(max_length=250)
+    address = models.CharField(max_length=250)
     date = models.DateField("Job Date")
     time = models.TimeField(("Job Time"), blank=True)
     status = models.CharField(max_length=1, choices=STATUSES, default=STATUSES[0][0])
@@ -47,3 +47,8 @@ class EmployeeAssignment(models.Model):
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
     clock_in = models.DateTimeField(null=True, blank=True)
     clock_out = models.DateTimeField(null=True, blank=True)
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> refs/remotes/origin/main
