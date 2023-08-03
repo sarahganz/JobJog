@@ -4,7 +4,7 @@ import boto3
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -67,18 +67,30 @@ def employer_login(request):
             # Authenticate employer
             user = authenticate(request, username=email, password=password)
 
-            if user is not None and user.is_employer:
-                # If the user is an employer and the provided credentials are valid, log in the employer
-                login(request, user)
-                return redirect("employer_dashboard")
+            if user is not None:
+                # Check if the user has an associated employer instance
+                employer = Employer.objects.filter(user=user).first()
+
+                if employer:
+                    # If the user is associated with an employer and the provided credentials are valid,
+                    # log in the employer
+                    login(request, user)
+                    return redirect("employer_dashboard")
+                else:
+                    # If the user is not associated with an employer, display an error message
+                    form.add_error("username", "You are not authorized as an employer.")
             else:
-                # If the provided credentials are invalid or the user is not an employer,
-                # display an error message
+                # If the provided credentials are invalid, display an error message
                 form.add_error("username", "Invalid email or password.")
     else:
         form = EmployerLoginForm()
 
     return render(request, "employer_login.html", {"form": form})
+
+
+def employer_logout(request):
+    logout(request)
+    return redirect("home")
 
 
 @login_required
