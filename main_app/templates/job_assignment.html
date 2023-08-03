@@ -1,5 +1,10 @@
+{% extends 'employer-base.html' %} 
+
+{% block content %}
+
 <h1>Assign Employees to Jobs</h1>
 <form method="post">
   {% csrf_token %} {{ form.as_p }}
   <button type="submit">Assign Job</button>
 </form>
+{% endblock %}

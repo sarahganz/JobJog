@@ -1,3 +1,7 @@
+{% extends 'employee-base.html' %}
+{% block content %}
+
+
 <h1>Welcome, {{ employee.name }}!</h1>
 <p>Company: {{ employee.employer.company_name }}</p>
 <p>Email: {{ employee.email }}</p>
@@ -26,3 +30,5 @@
 {% else %}
 <p>No assigned jobs at the moment.</p>
 {% endif %}
+
+{% endblock %}

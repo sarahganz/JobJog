@@ -26,10 +26,15 @@
       <nav>
         <div class="nav-wrapper">
           <ul>
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'about' %}">About</a></li>
-            <li><a href="{% url 'employer_login' %}">Employer Login</a></li>
-            <li><a href="{% url 'login' %}">Employee Login</a></li>
+       
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'jobs_create' %}">Add a Job</a></li>
+            <li><a href="{% url 'index' %}">All Jobs</a></li>
+            <li><a href=></a>All Employees</li>
+            <li><a href="{% url 'logout' %}">Log Out</a></li>
+            {% else %} 
+            <a href="{% url 'employer_login' %}">Employer Login</a>
+            {% endif %}
           </ul>
         </div>
       </nav>
