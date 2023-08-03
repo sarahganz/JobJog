@@ -22,6 +22,7 @@ urlpatterns = [
     path("job/assignment/", views.job_assignment, name="job_assignment"),
     path("clock_in/<int:assignment_id>/", views.clock_in, name="clock_in"),
     path("clock_out/<int:assignment_id>/", views.clock_out, name="clock_out"),
+    path('jobs/<int:job_id>/add_photo/', views.add_photo, name='add_photo'),
     path("job/<int:job_id>/", views.job_details, name="job_details"),
     path("jobs/", views.jobs_index, name="index"),
     path("jobs/<int:job_id>/", views.jobs_detail, name="detail"),

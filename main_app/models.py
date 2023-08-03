@@ -57,3 +57,10 @@ class EmployeeInvitation(models.Model):
 
     def __str__(self):
         return f"EmployeeInvitation from {self.employer} to {self.email}"
+
+class Photo(models.Model):
+    url = models.CharField(max_length=200)
+    job = models.ForeignKey(Job, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Photo for job_id: {self.job_id} @{self.url}"
