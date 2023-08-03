@@ -1,50 +1,128 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+{% block content %}
 
-<h1>JobJog</h1>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 20px;
+    text-align: center;
+  }
+
+  .logo {
+    max-width: 50%;
+  }
+
+  h1 {
+    color: #38B6FF;
+  }
+
+  h2 {
+    color: #DF5276;
+    font-size: 30px;
+  }
+
+  p {
+    margin-bottom: 20px;
+  }
+
+  li {
+    margin-bottom: 10px;
+  }
+
+  /* Styling for the Key Features section */
+  .key-features {
+    margin-top: 20px;
+  }
+
+  /* Styling for the Key Features list */
+  .key-features ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  /* Styling for the Key Features list items */
+  .key-features li {
+    margin-bottom: 20px; /* Add some vertical spacing between each Key Feature */
+  }
+
+  /* Styling for the tables */
+  .key-features table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #CCC;
+    border-radius: 5px;
+  }
+
+  /* Styling for the table cells (td) */
+  .key-features td {
+    padding: 10px;
+    border: 1px solid #CCC;
+    border-radius: 5px;
+  }
+
+</style>
+
+<a href="https://lh3.googleusercontent.com/pw/AIL4fc9YxQMWJxFc9YufBiFQIVX2S5m8aMSO_FHFHEyY-IVW4HfidaZUNWpAzB7wZOS4RCodMXJ1hCccxTzKpEQh0jV-ukXu_Lfx6nnsJV6MoLTsDgRsFUc=w2400?source=screenshot.guru"> <img src="https://lh3.googleusercontent.com/pw/AIL4fc9YxQMWJxFc9YufBiFQIVX2S5m8aMSO_FHFHEyY-IVW4HfidaZUNWpAzB7wZOS4RCodMXJ1hCccxTzKpEQh0jV-ukXu_Lfx6nnsJV6MoLTsDgRsFUc=w600-h315-p-k" class="logo"/> </a>
 <p>
-  JobJog is a user-friendly web application designed to streamline company
-  operations by empowering employers to efficiently manage their employees'
-  assignments and responsibilities. This comprehensive platform allows companies
-  to easily add new employees, assign work duties, and track workforce
-  performance seamlessly.
+  JobJog is a user-friendly web application designed to streamline company operations by empowering employers to efficiently manage their employees' assignments and responsibilities. This comprehensive platform allows companies to easily add new employees, assign work duties, and track workforce performance seamlessly.
 </p>
-<h2>Key Features:</h2>
-<div>
-  <li>
-    Employee Database: The application provides a centralized employee database,
-    where employers can add, view, and manage all employee details. This
-    includes personal information, job roles, contact details, and work history.
-  </li>
-  <li>
-    User Roles and Permissions: The system incorporates multi-level user roles
-    and permissions to ensure that only authorized personnel can access and
-    modify sensitive information.
-  </li>
-  <li>
-    Onboarding: The application facilitates a smooth onboarding process for new
-    employees.
-  </li>
-  <li>
-    Work Duties and Task Assignments: Employers can create and assign work
-    duties, tasks, and projects to specific employees. This feature ensures
-    effective task distribution, allowing managers to prioritize assignments and
-    track progress in real-time.
-  </li>
-  <li>
-    Security and Data Privacy: The application employs robust security measures
-    to protect sensitive employee information and ensure data privacy
-    compliance.
-  </li>
+
+<h2>Key Features</h2>
+<div class="key-features">
+  <ul>
+    <li>
+      <table>
+        <tr>
+          <td>Employee Database</td>
+        </tr>
+        <tr>
+          <td>The application provides a centralized employee database, where employers can add, view, and manage all employee details. This includes personal information, job roles, contact details, and work history.</td>
+        </tr>
+      </table>
+    </li>
+    <li>
+      <table>
+        <tr>
+          <td>User Roles and Permissions</td>
+        </tr>
+        <tr>
+          <td>The system incorporates multi-level user roles and permissions to ensure that only authorized personnel can access and modify sensitive information.</td>
+        </tr>
+      </table>
+    </li>
+    <li>
+      <table>
+        <tr>
+          <td>Onboarding</td>
+        </tr>
+        <tr>
+          <td>The application facilitates a smooth onboarding process for new employees.</td>
+        </tr>
+      </table>
+    </li>
+    <li>
+      <table>
+        <tr>
+          <td>Work Duties and Task Assignments</td>
+        </tr>
+        <tr>
+          <td>Employers can create and assign work duties, tasks, and projects to specific employees. This feature ensures effective task distribution, allowing managers to prioritize assignments and track progress in real-time.</td>
+        </tr>
+      </table>
+    </li>
+    <li>
+      <table>
+        <tr>
+          <td>Security and Data Privacy</td>
+        </tr>
+        <tr>
+          <td>The application employs robust security measures to protect sensitive employee information and ensure data privacy compliance.</td>
+        </tr>
+      </table>
+    </li>
+  </ul>
 </div>
-
-<p>
-  JobJog is a game-changer for companies seeking to enhance employee
-  productivity, improve task management, and maintain a well-organized and
-  efficient workforce. By providing a user-friendly interface, powerful task
-  management tools, and detailed employee insights, the application
-  significantly simplifies the complexities of workforce management, promoting a
-  cohesive and productive work environment.
-</p>
 
 <h2>Employer Registration</h2>
 <form method="post" action="{% url 'employer_registration' %}">
