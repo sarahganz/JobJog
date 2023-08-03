@@ -1,6 +1,36 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+<style>
+.btn {
+  background-color: #38b6ff;
+  color: #fff;
+  border: none;
+  margin-top: 25px;
+  border-radius: 4px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.btn:hover {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #78c2ff;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h4 {
+  text-align: center;
+}
+
+</style>
+
   <h1>Delete Job</h1>
 
   <h4>Are you sure you want to delete <span class="teal-text">{{ object.name }}</span>?</h4>

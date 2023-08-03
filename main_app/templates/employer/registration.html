@@ -1,5 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s;
+  margin-bottom: 30px;
+}
+
+button:hover {
+  box-shadow: 0px 10px 14px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+</style>
+
 <h2>Employer Registration</h2>
 <form method="post">
   {% csrf_token %} {{ form.as_p }}
   <button type="submit">Register as Employer</button>
 </form>
+
+{% endblock %}
