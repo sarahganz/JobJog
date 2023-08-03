@@ -1,6 +1,10 @@
+{% extends 'base.html' %} {% block content %}
+
 <h1>Welcome, {{ employer.user.username }}!</h1>
 <p>Company: {{ employer.company_name }}</p>
 <p>Email: {{ employer.user.email }}</p>
 <p>Phone: {{ employer.user.phone_number }}</p>
 
 <p><a href="{% url 'invite_employee' %}">Invite Employee</a></p>
+
+{% endblock %}

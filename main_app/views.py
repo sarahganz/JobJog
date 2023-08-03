@@ -20,6 +20,11 @@ from .forms import (
 )
 from django.utils import timezone
 from .models import Job
+from django.urls import reverse
+from django.core import signing
+from django.contrib.sites.shortcuts import get_current_site
+from django.http import Http404
+from django.utils.crypto import get_random_string
 
 
 def home(request):
@@ -109,6 +114,7 @@ def employer_dashboard(request):
     return render(request, "employer_dashboard.html", context)
 
 
+@login_required
 def invite_employee(request):
     if request.method == "POST":
         form = InviteEmployeeForm(request.POST)
@@ -116,19 +122,26 @@ def invite_employee(request):
             # Get the email address entered in the form
             employee_email = form.cleaned_data["employee_email"]
 
-            # Your logic to send the invite email here
-            # Use the send_mail function to send the email
-            # Example usage:
-            subject = "Invitation to join our company"
-            message = "You have been invited to join our company. Click on the link to register."
-            from_email = "noreply@example.com"
-            recipient_list = [employee_email]
+            # Generate a unique token for the employee invitation
+            token = get_random_string(length=32)  # You can adjust the length as needed
 
-            send_mail(subject, message, from_email, recipient_list)
+            # Save the token on the employer's side (e.g., in a database table)
+            # Here, I'll just store it in a session for simplicity.
+            request.session["employee_invite_token"] = token
 
-            return redirect(
-                "employer_dashboard"
-            )  # Redirect to employer dashboard after sending the invite
+            # Display the link with the token to the employer
+            invite_link = f"http://{request.get_host()}/employee_registration/{token}/"
+
+            # Optionally, you can display the link to the employer for copying
+            print("Invite Link:", invite_link)
+
+            # Add the invite link to the context
+            context = {
+                "form": form,
+                "invite_link": invite_link,
+            }
+
+            return render(request, "invite_employee.html", context)
     else:
         form = InviteEmployeeForm()
 
@@ -136,6 +149,7 @@ def invite_employee(request):
 
 
 def employee_registration(request, token):
+    print("Received invite_token:", token)
     # Here, you can handle the logic to validate the token and retrieve the associated employer
     # Once validated, the employee can proceed with the registration process
     if request.method == "POST":
