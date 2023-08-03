@@ -26,7 +26,7 @@ class Job(models.Model):
 
 class CustomUser(AbstractUser):
     name = models.CharField(max_length=100)
-    email = models.EmailField(max_length=100)
+    email = models.EmailField(max_length=100, unique=True)
     phone_number = models.CharField(max_length=10)
 
 
@@ -47,3 +47,13 @@ class EmployeeAssignment(models.Model):
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
     clock_in = models.DateTimeField(null=True, blank=True)
     clock_out = models.DateTimeField(null=True, blank=True)
+
+
+class EmployeeInvitation(models.Model):
+    employer = models.ForeignKey(Employer, on_delete=models.CASCADE)
+    token = models.CharField(max_length=32, unique=True)
+    email = models.EmailField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"EmployeeInvitation from {self.employer} to {self.email}"
