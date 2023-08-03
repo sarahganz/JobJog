@@ -14,10 +14,11 @@ class JobAssignmentForm(forms.ModelForm):
 
 class EmployeeRegistrationForm(UserCreationForm):
     skills = forms.CharField(max_length=100)
-    hourly_rate = forms.IntegerField()
+    hourly_rate = forms.DecimalField(max_digits=10, decimal_places=2)
 
     class Meta(UserCreationForm.Meta):
         model = CustomUser  # Use your custom user model
+        fields = ["email", "password1", "password2", "hourly_rate"]
 
     def save(self, commit=True):
         user = super().save(commit=False)

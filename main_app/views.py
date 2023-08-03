@@ -9,7 +9,17 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import send_mail
-from .models import Employer, CustomUser, Employee, EmployeeAssignment, Job
+import random
+import string
+from django.contrib.auth import get_user_model
+from .models import (
+    Employer,
+    CustomUser,
+    Employee,
+    EmployeeAssignment,
+    Job,
+    EmployeeInvitation,
+)
 from datetime import datetime
 from .forms import (
     JobAssignmentForm,
@@ -24,6 +34,8 @@ from django.urls import reverse
 from django.core import signing
 from django.contrib.sites.shortcuts import get_current_site
 from django.http import Http404
+from django.utils.crypto import get_random_string
+from django.http import HttpResponse
 from django.utils.crypto import get_random_string
 
 
@@ -114,6 +126,10 @@ def employer_dashboard(request):
     return render(request, "employer_dashboard.html", context)
 
 
+def generate_token():
+    return "".join(random.choices(string.ascii_letters + string.digits, k=32))
+
+
 @login_required
 def invite_employee(request):
     if request.method == "POST":
@@ -123,19 +139,23 @@ def invite_employee(request):
             employee_email = form.cleaned_data["employee_email"]
 
             # Generate a unique token for the employee invitation
-            token = get_random_string(length=32)  # You can adjust the length as needed
+            token = generate_token()
 
-            # Save the token on the employer's side (e.g., in a database table)
-            # Here, I'll just store it in a session for simplicity.
-            request.session["employee_invite_token"] = token
+            # Save the token in the database along with the employer information
+            EmployeeInvitation.objects.create(
+                employer=request.user.employer,  # Use request.user.employer
+                token=token,
+                email=employee_email,
+            )
 
-            # Display the link with the token to the employer
-            invite_link = f"http://{request.get_host()}/employee_registration/{token}/"
+            # Send the email/notification with the invite link to the employee
+            invite_link = f"http://{request.get_host()}/employee/registration/{token}/"
+
+            # You can use a library like Django's built-in email support or a third-party library to send the email here
 
             # Optionally, you can display the link to the employer for copying
             print("Invite Link:", invite_link)
 
-            # Add the invite link to the context
             context = {
                 "form": form,
                 "invite_link": invite_link,
@@ -149,58 +169,37 @@ def invite_employee(request):
 
 
 def employee_registration(request, token):
-    print("Received invite_token:", token)
-    # Here, you can handle the logic to validate the token and retrieve the associated employer
-    # Once validated, the employee can proceed with the registration process
+    try:
+        invitation = EmployeeInvitation.objects.get(token=token)
+    except EmployeeInvitation.DoesNotExist:
+        return HttpResponse("Invalid token")
+
+    User = get_user_model()
+
     if request.method == "POST":
         form = EmployeeRegistrationForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            employer = ...  # Retrieve the employer associated with the token
-            Employee.objects.create(user=user, employer=employer)
-            login(request, user)  # Log in the employee after successful registration
-            return redirect(
-                "employee_dashboard"
-            )  # Redirect to employee dashboard after registration
+            # Create the user account
+            user = User.objects.create_user(
+                username=form.cleaned_data["username"],
+                password=form.cleaned_data["password"],
+            )
+
+            # Create the employee profile
+            employee = Employee.objects.create(
+                user=user,
+                email=invitation.email,
+                # You can set other fields here based on the registration form
+            )
+
+            # Optionally, you can clear the invitation after successful registration
+            invitation.delete()
+
+            return render(request, "registration_success.html")
     else:
         form = EmployeeRegistrationForm()
 
     return render(request, "employee_registration.html", {"form": form})
-
-
-@login_required
-def employee_dashboard(request):
-    employee = request.user.employee
-    assigned_jobs = EmployeeAssignment.objects.filter(employee=employee)
-
-    context = {
-        "employee": employee,
-        "assigned_jobs": assigned_jobs,
-    }
-
-    return render(request, "employee_dashboard.html", context)
-
-
-@login_required
-def clock_in(request):
-    employee = request.user.employee
-
-    # Check if the employee already has an active assignment with a NULL clock_in value
-    assignment = EmployeeAssignment.objects.filter(
-        employee=employee, clock_in__isnull=True
-    ).first()
-
-    if assignment:
-        # If an active assignment exists, update its clock_in value
-        assignment.clock_in = datetime.now()
-        assignment.save()
-    else:
-        # If no active assignment exists, create a new assignment
-        assignment = EmployeeAssignment.objects.create(
-            employee=employee, clock_in=datetime.now()
-        )
-
-    return redirect("employee_dashboard")
 
 
 @login_required
