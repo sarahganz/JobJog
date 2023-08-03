@@ -14,10 +14,18 @@ class JobAssignmentForm(forms.ModelForm):
 
 class EmployeeRegistrationForm(UserCreationForm):
     skills = forms.CharField(max_length=100)
-    hourly_rate = forms.IntegerField()
+    hourly_rate = forms.DecimalField(max_digits=10, decimal_places=2)
 
     class Meta(UserCreationForm.Meta):
-        model = CustomUser  # Use your custom user model
+        model = CustomUser
+        fields = [
+            "username",
+            "email",
+            "phone_number",
+            "password1",
+            "password2",
+            "hourly_rate",
+        ]
 
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -26,7 +34,7 @@ class EmployeeRegistrationForm(UserCreationForm):
 
         if commit:
             user.save()
-            Employee.objects.create(user=user, skills=skills, hourly_rate=hourly_rate)
+            # Employee.objects.create(user=user, skills=skills, hourly_rate=hourly_rate)
 
         return user
 
@@ -57,6 +65,19 @@ class EmployerRegistrationForm(UserCreationForm):
 class EmployerLoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super(EmployerLoginForm, self).__init__(*args, **kwargs)
+        # Customize the labels and attributes of the form fields if needed
+        self.fields["username"].label = "Email"
+        self.fields["username"].widget.attrs.update(
+            {"class": "form-control", "placeholder": "Enter your email"}
+        )
+        self.fields["password"].widget.attrs.update(
+            {"class": "form-control", "placeholder": "Enter your password"}
+        )
+
+
+class EmployeeLoginForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super(EmployeeLoginForm, self).__init__(*args, **kwargs)
         # Customize the labels and attributes of the form fields if needed
         self.fields["username"].label = "Email"
         self.fields["username"].widget.attrs.update(

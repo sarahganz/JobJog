@@ -1,10 +1,11 @@
+{% extends 'employee-base.html' %} {% block content %}
 <h1>Welcome, {{ employee.name }}!</h1>
 <p>Company: {{ employee.employer.company_name }}</p>
 <p>Email: {{ employee.email }}</p>
 <p>Phone: {{ employee.phone_number }}</p>
 
 <h2>Assigned Jobs:</h2>
-{% if assigned_jobs %}
+<!-- {% if assigned_jobs %}
 <ul>
   {% for assignment in assigned_jobs %}
   <li>
@@ -22,7 +23,7 @@
     {% endif %}
   </li>
   {% endfor %}
-</ul>
+</ul> -->
 {% else %}
 <p>No assigned jobs at the moment.</p>
-{% endif %}
+{% endif %} {% endblock %}

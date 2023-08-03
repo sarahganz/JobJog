@@ -9,7 +9,18 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import send_mail
-from .models import Employer, CustomUser, Employee, EmployeeAssignment, Job
+import random
+import string
+from django.contrib.auth import get_user_model
+from .models import (
+    Employer,
+    CustomUser,
+    Employee,
+    EmployeeAssignment,
+    Job,
+    EmployeeInvitation,
+    Photo
+)
 from datetime import datetime
 from .forms import (
     JobAssignmentForm,
@@ -17,6 +28,7 @@ from .forms import (
     InviteEmployeeForm,
     EmployerRegistrationForm,
     EmployerLoginForm,
+    EmployeeLoginForm,
 )
 from django.utils import timezone
 from .models import Job
@@ -24,6 +36,8 @@ from django.urls import reverse
 from django.core import signing
 from django.contrib.sites.shortcuts import get_current_site
 from django.http import Http404
+from django.utils.crypto import get_random_string
+from django.http import HttpResponse
 from django.utils.crypto import get_random_string
 
 
@@ -93,6 +107,37 @@ def employer_login(request):
     return render(request, "employer_login.html", {"form": form})
 
 
+def employee_login(request):
+    if request.method == "POST":
+        form = EmployeeLoginForm(request, request.POST)
+        if form.is_valid():
+            email = form.cleaned_data["username"]
+            password = form.cleaned_data["password"]
+
+            # Authenticate employer
+            user = authenticate(request, username=email, password=password)
+
+            if user is not None:
+                # Check if the user has an associated employee instance
+                employee = Employee.objects.filter(user=user).first()
+
+                if employee:
+                    # If the user is associated with an employee and the provided credentials are valid,
+                    # log in the employee
+                    login(request, user)
+                    return redirect("employee_dashboard")
+                else:
+                    # If the user is not associated with an employee, display an error message
+                    form.add_error("username", "You are not authorized as an employee.")
+            else:
+                # If the provided credentials are invalid, display an error message
+                form.add_error("username", "Invalid email or password.")
+    else:
+        form = EmployeeLoginForm()
+
+    return render(request, "employee_login.html", {"form": form})
+
+
 def employer_logout(request):
     logout(request)
     return redirect("home")
@@ -114,6 +159,10 @@ def employer_dashboard(request):
     return render(request, "employer_dashboard.html", context)
 
 
+def generate_token():
+    return "".join(random.choices(string.ascii_letters + string.digits, k=32))
+
+
 @login_required
 def invite_employee(request):
     if request.method == "POST":
@@ -123,19 +172,23 @@ def invite_employee(request):
             employee_email = form.cleaned_data["employee_email"]
 
             # Generate a unique token for the employee invitation
-            token = get_random_string(length=32)  # You can adjust the length as needed
+            token = generate_token()
 
-            # Save the token on the employer's side (e.g., in a database table)
-            # Here, I'll just store it in a session for simplicity.
-            request.session["employee_invite_token"] = token
+            # Save the token in the database along with the employer information
+            EmployeeInvitation.objects.create(
+                employer=request.user.employer,  # Use request.user.employer
+                token=token,
+                email=employee_email,
+            )
 
-            # Display the link with the token to the employer
-            invite_link = f"http://{request.get_host()}/employee_registration/{token}/"
+            # Send the email/notification with the invite link to the employee
+            invite_link = f"http://{request.get_host()}/employee/registration/{token}/"
+
+            # You can use a library like Django's built-in email support or a third-party library to send the email here
 
             # Optionally, you can display the link to the employer for copying
             print("Invite Link:", invite_link)
 
-            # Add the invite link to the context
             context = {
                 "form": form,
                 "invite_link": invite_link,
@@ -149,19 +202,47 @@ def invite_employee(request):
 
 
 def employee_registration(request, token):
-    print("Received invite_token:", token)
-    # Here, you can handle the logic to validate the token and retrieve the associated employer
-    # Once validated, the employee can proceed with the registration process
+    try:
+        invitation = EmployeeInvitation.objects.get(token=token)
+    except EmployeeInvitation.DoesNotExist:
+        return HttpResponse("Invalid token")
+
     if request.method == "POST":
         form = EmployeeRegistrationForm(request.POST)
-        if form.is_valid():
+        if form.is_valid() and form.cleaned_data["email"] == invitation.email:
+            invitation = EmployeeInvitation.objects.get(token=token)
+            # Create the user account
+            hourly_rate = form.cleaned_data["hourly_rate"]
+            skills = form.cleaned_data["skills"]
+            print("before user save line 183")
+            form.employer = invitation.employer
+            print(form)
             user = form.save()
-            employer = ...  # Retrieve the employer associated with the token
-            Employee.objects.create(user=user, employer=employer)
-            login(request, user)  # Log in the employee after successful registration
-            return redirect(
-                "employee_dashboard"
-            )  # Redirect to employee dashboard after registration
+            print("after user save line 185")
+            print(user)
+            employee, created = Employee.objects.get_or_create(
+                user=user,
+                employer=invitation.employer,
+                hourly_rate=hourly_rate,
+                skills=skills,
+            )
+            print("after line 186")
+            if not created:
+                employee.hourly_rate = hourly_rate
+                employee.skills = skills
+                employee.employer = invitation.employer.id
+                employee.save()
+            employer = invitation.employer
+            # Create the employee profile
+            # employee = Employee.objects.create(
+            #     user=user,
+            #     email=invitation.email,
+            #     employer=employer,
+            #     hourly_rate=hourly_rate,
+            #     skills=skills,
+            # )
+            print(employee)
+            return redirect("employee_dashboard")
     else:
         form = EmployeeRegistrationForm()
 
@@ -170,37 +251,16 @@ def employee_registration(request, token):
 
 @login_required
 def employee_dashboard(request):
+    # Retrieve the logged-in employer's data
     employee = request.user.employee
-    assigned_jobs = EmployeeAssignment.objects.filter(employee=employee)
+
+    # Get the list of employees associated with the employer
 
     context = {
         "employee": employee,
-        "assigned_jobs": assigned_jobs,
     }
 
     return render(request, "employee_dashboard.html", context)
-
-
-@login_required
-def clock_in(request):
-    employee = request.user.employee
-
-    # Check if the employee already has an active assignment with a NULL clock_in value
-    assignment = EmployeeAssignment.objects.filter(
-        employee=employee, clock_in__isnull=True
-    ).first()
-
-    if assignment:
-        # If an active assignment exists, update its clock_in value
-        assignment.clock_in = datetime.now()
-        assignment.save()
-    else:
-        # If no active assignment exists, create a new assignment
-        assignment = EmployeeAssignment.objects.create(
-            employee=employee, clock_in=datetime.now()
-        )
-
-    return redirect("employee_dashboard")
 
 
 @login_required
@@ -254,6 +314,27 @@ def clock_out(request, assignment_id):
         assignment.save()
 
     return redirect("employee_dashboard")
+
+
+@login_required
+def add_photo(request, job_id):
+    # photo-file maps to the "name" attr on the <input>
+    photo_file = request.FILES.get("photo-file", None)
+    if photo_file:
+        s3 = boto3.client("s3")
+        # Need a unique "key" (filename)
+        # It needs to keep the same file extension
+        # of the file that was uploaded (.png, .jpeg, etc.)
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind(".") :]
+        try:
+            bucket = os.environ["S3_BUCKET"]
+            s3.upload_fileobj(photo_file, bucket, key)
+            url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+            Photo.objects.create(url=url, job_id=job_id)
+        except Exception as e:
+            print("An error occurred uploading file to S3")
+            print(e)
+    return redirect("detail", job_id=job_id)
 
 
 @login_required
