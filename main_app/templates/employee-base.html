@@ -26,10 +26,12 @@
       <nav>
         <div class="nav-wrapper">
           <ul>
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'about' %}">About</a></li>
-            <li><a href="{% url 'employer_login' %}">Employer Login</a></li>
+           
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Log Out</a></li>
+            {% else %} 
             <li><a href="{% url 'login' %}">Employee Login</a></li>
+            {% endif %}
           </ul>
         </div>
       </nav>
