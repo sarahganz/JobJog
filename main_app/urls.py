@@ -12,6 +12,7 @@ urlpatterns = [
     path("employer/login/", views.employer_login, name="employer_login"),
     path("employer/logout/", views.employer_logout, name="employer_logout"),
     path("employer/dashboard/", views.employer_dashboard, name="employer_dashboard"),
+    path("employee/dashboard/", views.employee_dashboard, name="employee_dashboard"),
     path("invite_employee/", views.invite_employee, name="invite_employee"),
     path(
         "employee/registration/<str:token>/",

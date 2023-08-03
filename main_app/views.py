@@ -174,32 +174,60 @@ def employee_registration(request, token):
     except EmployeeInvitation.DoesNotExist:
         return HttpResponse("Invalid token")
 
-    User = get_user_model()
-
     if request.method == "POST":
         form = EmployeeRegistrationForm(request.POST)
-        if form.is_valid():
+        if form.is_valid() and form.cleaned_data["email"] == invitation.email:
+            invitation = EmployeeInvitation.objects.get(token=token)
             # Create the user account
-            user = User.objects.create_user(
-                username=form.cleaned_data["username"],
-                password=form.cleaned_data["password"],
-            )
-
-            # Create the employee profile
-            employee = Employee.objects.create(
+            hourly_rate = form.cleaned_data["hourly_rate"]
+            skills = form.cleaned_data["skills"]
+            print("before user save line 183")
+            form.employer = invitation.employer
+            print(form)
+            user = form.save()
+            print("after user save line 185")
+            print(user)
+            employee, created = Employee.objects.get_or_create(
                 user=user,
-                email=invitation.email,
-                # You can set other fields here based on the registration form
+                employer=invitation.employer,
+                hourly_rate=hourly_rate,
+                skills=skills,
             )
-
-            # Optionally, you can clear the invitation after successful registration
-            invitation.delete()
-
-            return render(request, "registration_success.html")
+            print("after line 186")
+            if not created:
+                employee.hourly_rate = hourly_rate
+                employee.skills = skills
+                employee.employer = invitation.employer.id
+                employee.save()
+            employer = invitation.employer
+            # Create the employee profile
+            # employee = Employee.objects.create(
+            #     user=user,
+            #     email=invitation.email,
+            #     employer=employer,
+            #     hourly_rate=hourly_rate,
+            #     skills=skills,
+            # )
+            print(employee)
+            return redirect("employee_dashboard")
     else:
         form = EmployeeRegistrationForm()
 
     return render(request, "employee_registration.html", {"form": form})
+
+
+@login_required
+def employee_dashboard(request):
+    # Retrieve the logged-in employer's data
+    employee = request.user.employee
+
+    # Get the list of employees associated with the employer
+
+    context = {
+        # "employees": employees,
+    }
+
+    return render(request, "employee_dashboard.html", context)
 
 
 @login_required
