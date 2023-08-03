@@ -1,6 +1,7 @@
 <!-- employee_registration.html -->
 
-{% extends 'base.html' %} {% block content %}
+{% extends 'employee-base.html' %}
+{% block content %}
 <h2>Employee Registration</h2>
 <form method="post">
   {% csrf_token %} {{ form.as_p }}

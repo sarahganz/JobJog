@@ -1,11 +1,39 @@
-<h1>{{ job.description }}</h1>
-<p>Address: {{ job.address }}</p>
-<p>Date: {{ job.date }}</p>
-<p>Time: {{ job.time }}</p>
-<p>Status: {{ job.get_status_display }}</p>
+{% extends 'employee-base.html' %}
+{% block content %}
 
-{% if not clocked_in %}
-<a href="{% url 'clock_in' assignment.id %}">Clock In</a>
-{% endif %} {% if clocked_in and not clocked_out %}
-<a href="{% url 'clock_out' assignment.id %}">Clock Out</a>
-{% endif %}
+<div class="row">
+  <div class="col s6">
+    <div class="card">
+        <div class="card-content">
+        <h1>{{ job.description }}</h1>
+        <p>Address: {{ job.address }}</p>
+        <p>Date: {{ job.date }}</p>
+        <p>Time: {{ job.time }}</p>
+        <p>Status: {{ job.get_status_display }}</p>
+        </div>
+    </div>
+<h2>Please upload a photo of your completed job.</h2>
+        {% for photo in job.photo_set.all %}
+    <img class="responsive-img card-panel" src="{{photo.url}}">
+        {% empty %}
+    <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+        {% endfor %}
+    <form action="{% url 'add_photo' job.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+        {% csrf_token %}
+        <input type="file" name="photo-file">
+    <br><br>
+        <button type="submit" class="btn">Upload Photo</button>
+    </form>
+  </div>
+
+  <div class="col s6">
+        {% if not clocked_in %}
+    <a href="{% url 'clock_in' assignment.id %}">Clock In</a>
+        {% endif %} {% if clocked_in and not clocked_out %}
+    <a href="{% url 'clock_out' assignment.id %}">Clock Out</a>
+        {% endif %}
+  </div>
+</div>
+
+
+{% endblock %}
