@@ -75,4 +75,17 @@ class EmployerLoginForm(AuthenticationForm):
         )
 
 
+class EmployeeLoginForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super(EmployeeLoginForm, self).__init__(*args, **kwargs)
+        # Customize the labels and attributes of the form fields if needed
+        self.fields["username"].label = "Email"
+        self.fields["username"].widget.attrs.update(
+            {"class": "form-control", "placeholder": "Enter your email"}
+        )
+        self.fields["password"].widget.attrs.update(
+            {"class": "form-control", "placeholder": "Enter your password"}
+        )
+
+
 from django.forms import ModelForm

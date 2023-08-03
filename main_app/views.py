@@ -27,6 +27,7 @@ from .forms import (
     InviteEmployeeForm,
     EmployerRegistrationForm,
     EmployerLoginForm,
+    EmployeeLoginForm,
 )
 from django.utils import timezone
 from .models import Job
@@ -103,6 +104,37 @@ def employer_login(request):
         form = EmployerLoginForm()
 
     return render(request, "employer_login.html", {"form": form})
+
+
+def employee_login(request):
+    if request.method == "POST":
+        form = EmployeeLoginForm(request, request.POST)
+        if form.is_valid():
+            email = form.cleaned_data["username"]
+            password = form.cleaned_data["password"]
+
+            # Authenticate employer
+            user = authenticate(request, username=email, password=password)
+
+            if user is not None:
+                # Check if the user has an associated employee instance
+                employee = Employee.objects.filter(user=user).first()
+
+                if employee:
+                    # If the user is associated with an employee and the provided credentials are valid,
+                    # log in the employee
+                    login(request, user)
+                    return redirect("employee_dashboard")
+                else:
+                    # If the user is not associated with an employee, display an error message
+                    form.add_error("username", "You are not authorized as an employee.")
+            else:
+                # If the provided credentials are invalid, display an error message
+                form.add_error("username", "Invalid email or password.")
+    else:
+        form = EmployeeLoginForm()
+
+    return render(request, "employee_login.html", {"form": form})
 
 
 def employer_logout(request):
@@ -224,7 +256,7 @@ def employee_dashboard(request):
     # Get the list of employees associated with the employer
 
     context = {
-        # "employees": employees,
+        "employee": employee,
     }
 
     return render(request, "employee_dashboard.html", context)
@@ -245,9 +277,6 @@ def clock_out(request):
         assignment.save()
 
     return redirect("employee_dashboard")
-
-
-
 
 
 def job_assignment(request):
@@ -285,26 +314,26 @@ def clock_out(request, assignment_id):
 
     return redirect("employee_dashboard")
 
+
 @login_required
 def add_photo(request, job_id):
-  # photo-file maps to the "name" attr on the <input>
-  photo_file = request.FILES.get('photo-file', None)
-  if photo_file:
-    s3 = boto3.client('s3')
-    # Need a unique "key" (filename)
-    # It needs to keep the same file extension
-    # of the file that was uploaded (.png, .jpeg, etc.)
-    key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
-    try:
-      bucket = os.environ['S3_BUCKET']
-      s3.upload_fileobj(photo_file, bucket, key)
-      url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
-      Photo.objects.create(url=url, job_id=job_id)
-    except Exception as e:
-      print('An error occurred uploading file to S3')
-      print(e)
-  return redirect('detail', job_id=job_id)
-
+    # photo-file maps to the "name" attr on the <input>
+    photo_file = request.FILES.get("photo-file", None)
+    if photo_file:
+        s3 = boto3.client("s3")
+        # Need a unique "key" (filename)
+        # It needs to keep the same file extension
+        # of the file that was uploaded (.png, .jpeg, etc.)
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind(".") :]
+        try:
+            bucket = os.environ["S3_BUCKET"]
+            s3.upload_fileobj(photo_file, bucket, key)
+            url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+            Photo.objects.create(url=url, job_id=job_id)
+        except Exception as e:
+            print("An error occurred uploading file to S3")
+            print(e)
+    return redirect("detail", job_id=job_id)
 
 
 @login_required
