@@ -19,6 +19,7 @@ from .models import (
     EmployeeAssignment,
     Job,
     EmployeeInvitation,
+    Photo
 )
 from datetime import datetime
 from .forms import (
