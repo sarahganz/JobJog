@@ -4,4 +4,9 @@
   {% csrf_token %} {{ form.as_p }}
   <button type="submit">Send Invite</button>
 </form>
-{% endblock %}
+
+{% if invite_link %}
+<p>
+  Invite Link: <a href="{{ invite_link }}" target="_blank">{{ invite_link }}</a>
+</p>
+{% endif %} {% endblock %}
