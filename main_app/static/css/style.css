@@ -3,7 +3,10 @@ body {
     min-height: 100vh;
     flex-direction: column;
    
+  
+
   }
+
   
 main {
     flex: 1 0 auto;
@@ -13,12 +16,8 @@ nav {
   background-color: #0E2344;
   }
 
-  nav > a:hover:not(.active) {
-    color: white;
-    background-color: #ffffff;
-  }
-  
-  
+
+
 
 footer.page-footer {
     padding-top: 0;
