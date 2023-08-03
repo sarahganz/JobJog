@@ -17,8 +17,15 @@ class EmployeeRegistrationForm(UserCreationForm):
     hourly_rate = forms.DecimalField(max_digits=10, decimal_places=2)
 
     class Meta(UserCreationForm.Meta):
-        model = CustomUser  # Use your custom user model
-        fields = ["email", "password1", "password2", "hourly_rate"]
+        model = CustomUser
+        fields = [
+            "username",
+            "email",
+            "phone_number",
+            "password1",
+            "password2",
+            "hourly_rate",
+        ]
 
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -27,7 +34,7 @@ class EmployeeRegistrationForm(UserCreationForm):
 
         if commit:
             user.save()
-            Employee.objects.create(user=user, skills=skills, hourly_rate=hourly_rate)
+            # Employee.objects.create(user=user, skills=skills, hourly_rate=hourly_rate)
 
         return user
 
