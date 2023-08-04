@@ -1,8 +1,8 @@
 {% extends 'employee-base.html' %} {% block content %}
 <h1>Welcome, {{ employee.name }}!</h1>
 <p>Company: {{ employee.employer.company_name }}</p>
-<p>Email: {{ employee.email }}</p>
-<p>Phone: {{ employee.phone_number }}</p>
+<p>Email: {{ employee.user.email }}</p>
+<p>Phone: {{ employee.user.phone_number }}</p>
 
 <h2>Assigned Jobs:</h2>
 <!-- {% if assigned_jobs %}
