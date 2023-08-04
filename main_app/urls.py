@@ -25,11 +25,16 @@ urlpatterns = [
     path("job/assignment/", views.job_assignment, name="job_assignment"),
     path("clock_in/<int:assignment_id>/", views.clock_in, name="clock_in"),
     path("clock_out/<int:assignment_id>/", views.clock_out, name="clock_out"),
-    path('jobs/<int:job_id>/add_photo/', views.add_photo, name='add_photo'),
+    path("jobs/<int:job_id>/add_photo/", views.add_photo, name="add_photo"),
     path("job/<int:job_id>/", views.job_details, name="job_details"),
     path("jobs/", views.jobs_index, name="index"),
     path("jobs/<int:job_id>/", views.jobs_detail, name="detail"),
     path("jobs/create/", views.JobCreate.as_view(), name="jobs_create"),
     path("jobs/<int:pk>/update/", views.JobUpdate.as_view(), name="jobs_update"),
     path("jobs/<int:pk>/delete/", views.JobDelete.as_view(), name="jobs_delete"),
+    path(
+        "job/<int:job_id>/assign/",
+        views.assign_employee_to_job,
+        name="assign_employee_to_job",
+    ),
 ]

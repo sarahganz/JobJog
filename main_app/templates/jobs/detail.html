@@ -1,5 +1,4 @@
-{% extends 'employer-base.html' %}
-{% block content %}
+{% extends 'employer-base.html' %} {% block content %}
 
 <h1>Job Details</h1>
 
@@ -11,10 +10,14 @@
     <p>Time: {{ job.time }}</p>
     <p>Status: {{ job.status }}</p>
   </div>
-    <div class="card-action">
-      <a href="{% url 'jobs_update' job.id %}">Edit</a>
-      <a href="{% url 'jobs_delete' job.id %}">Delete</a>
-    </div>
+  <div class="card-action">
+    <a href="{% url 'jobs_update' job.id %}">Edit</a>
+    <a href="{% url 'jobs_delete' job.id %}">Delete</a>
+  </div>
 </div>
+
+<a href="{% url 'assign_employee_to_job' job_id=job.id %}"
+  >Assign employees to this job</a
+>
 
 {% endblock %}

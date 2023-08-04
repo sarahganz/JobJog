@@ -29,6 +29,7 @@ from .forms import (
     EmployerRegistrationForm,
     EmployerLoginForm,
     EmployeeLoginForm,
+    AssignEmployeeForm,
 )
 from django.utils import timezone
 from .models import Job
@@ -39,6 +40,7 @@ from django.http import Http404
 from django.utils.crypto import get_random_string
 from django.http import HttpResponse
 from django.utils.crypto import get_random_string
+from django.forms import ModelChoiceField
 
 
 def home(request):
@@ -344,7 +346,7 @@ def job_details(request, job_id):
 
 
 def jobs_detail(request, job_id):
-    job = Job.objects.get(id=job_id)
+    job = get_object_or_404(Job, id=job_id)
     return render(request, "jobs/detail.html", {"job": job})
 
 
@@ -387,3 +389,33 @@ def detail_employee(request, employee_id):
     employee = get_object_or_404(Employee, id=employee_id)
 
     return render(request, "employee_detail.html", {"employee": employee})
+
+
+def assign_employee_to_job(request, job_id):
+    job = get_object_or_404(Job, id=job_id)
+    available_employees = Employee.objects.filter(
+        employer=request.user.employer
+    ).exclude(employeeassignment__job=job)
+    assigned_employees = job.employeeassignment_set.all()
+
+    if request.method == "POST":
+        employee_id = request.POST.get("employee_id")
+        action = request.POST.get("action")
+
+        if action == "assign":
+            employee = get_object_or_404(Employee, id=employee_id)
+            assignment = EmployeeAssignment(employee=employee, job=job)
+            assignment.save()
+        elif action == "remove":
+            assignment = EmployeeAssignment.objects.get(
+                employee_id=employee_id, job=job
+            )
+            assignment.delete()
+
+    context = {
+        "job": job,
+        "available_employees": available_employees,
+        "assigned_employees": assigned_employees,
+    }
+
+    return render(request, "assign_employee_to_job.html", context)
