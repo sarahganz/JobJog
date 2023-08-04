@@ -1,0 +1,18 @@
+{% extends 'employer-base.html' %}
+
+{% block content %}
+
+
+    <h1>Time Cards</h1>
+
+    <h1>Employee: {{ employee.user.first_name }}</h1>
+    
+    <ul>
+        {% for assignment in assignments %}
+            <li>{{ assignment.job }} - Clock in: {{ assignment.clock_in }} - Clock out: {{ assignment.clock_out }}</li>
+        {% empty %}
+            <li>No assignments found for this employee.</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
