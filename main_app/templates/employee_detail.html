@@ -1,15 +1,18 @@
 {% extends 'employer-base.html' %} {% block content %}
 <h1>Employee Details</h1>
-<span class="card-title">Full Name: {{ employee.user.first_name }} {{ employee.user.last_name }}</span>
-<p>Email: {{ employee.user.email }}</p>
-<p>Phone Number: {{ employee.user.phone_number }}</p>
-<p>Skills: {{ employee.skills }}</p>
-<p>Hourly Rate: {{ employee.hourly_rate }}</p>
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">{{ employee.user.first_name }} {{ employee.user.last_name }}</span>
+    <p>Email: {{ employee.user.email }}</p>
+    <p>Phone Number: {{ employee.user.phone_number }}</p>
+    <p>Skills: {{ employee.skills }}</p>
+    <p>Hourly Rate: {{ employee.hourly_rate }}</p>
 
-<div class="card-action">
-  <a href="{% url 'employees_update' employee.id %}">Edit</a>
-  |
-  <a href="{% url 'employees_delete' employee.id %}">Delete</a>
+    <div class="card-action">
+      <a href="{% url 'employees_update' employee.id %}">Edit</a>
+      <a href="{% url 'employees_delete' employee.id %}">Delete</a>
+    </div>
+  </div>
 </div>
 <br><br>
 <a href="{% url 'employee_assignments' employee.id %}">View Employee Timecards</a>
