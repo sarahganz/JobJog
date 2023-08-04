@@ -41,6 +41,7 @@ urlpatterns = [
     path("clock-in/<int:assignment_id>/", views.clock_in, name="clock_in"),
     path("clock-out/<int:assignment_id>/", views.clock_out, name="clock_out"),
     path("jobs/<int:job_id>/add_photo/", views.add_photo, name="add_photo"),
+    path("photos/<int:photo_id>/delete/", views.delete_photo, name="delete_photo"),
     path("job/<int:job_id>/", views.job_details, name="job_details"),
     path("jobs/", views.jobs_index, name="index"),
     path("jobs/<int:job_id>/", views.jobs_detail, name="detail"),
