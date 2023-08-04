@@ -26,10 +26,13 @@ h1 {
     text-align: center;
     color:  #38b6ff;
     font-family: 'Russo One', sans-serif;
+    text-transform: capitalize;
 
 }
 
-
+h2 {
+  text-transform: capitalize;
+}
 
 .devpic {
   
