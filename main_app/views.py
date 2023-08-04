@@ -419,3 +419,13 @@ def assign_employee_to_job(request, job_id):
     }
 
     return render(request, "assign_employee_to_job.html", context)
+
+  
+class EmployeeUpdate(UpdateView):
+    model = Employee
+    fields = "__all__"
+
+
+class EmployeeDelete(DeleteView):
+    model = Employee
+    success_url = "/employees"
