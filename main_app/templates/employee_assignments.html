@@ -5,14 +5,22 @@
 
     <h1>Time Cards</h1>
 
-    <h1>Employee: {{ employee.user.first_name }}</h1>
-    
-    <ul>
+    <h2>Employee: {{ employee.user.first_name }} {{ employee.user.last_name }}</h2>
+ 
         {% for assignment in assignments %}
-            <li>{{ assignment.job }} - Clock in: {{ assignment.clock_in }} - Clock out: {{ assignment.clock_out }}</li>
-        {% empty %}
-            <li>No assignments found for this employee.</li>
+            <div class="card">
+                <a href=>
+                  <div class="card-content">
+                    <span class="card-title">{{ assignment.job.date }}</span>
+                    <p>Job: {{ assignment.job }} </p>
+                    <p>Clock In Time: {{ assignment.clock_in }}</p>
+                    <p>Clock Out Time: {{ assignment.clock_out }}</p>
+                  </div>
+                </a>
+              </div>
+              {% empty %}
+              <p>Employee does not have any timecards</p>
         {% endfor %}
-    </ul>
+    
 
 {% endblock %}

@@ -347,7 +347,9 @@ def job_details(request, job_id):
 
 def jobs_detail(request, job_id):
     job = get_object_or_404(Job, id=job_id)
-    return render(request, "jobs/detail.html", {"job": job})
+    employee_assignments = EmployeeAssignment.objects.filter(job=job)
+    assigned_employees = [assignment.employee for assignment in employee_assignments]
+    return render(request, 'jobs/detail.html', {'job': job, 'assigned_employees': assigned_employees})
 
 
 def jobs_index(request):

@@ -7,6 +7,8 @@
     <div class="card">
       <div class="card-content">
         <span class="card-title">{{ employee.user.get_full_name }}</span>
+        <p>Skill(s): {{ employee.skills }}</p>
+        <p>Hourly Rate: ${{ employee.hourly_rate }}</p>
         <form method="post">
           {% csrf_token %}
           <input type="hidden" name="employee_id" value="{{ employee.id }}" />
@@ -26,6 +28,8 @@
         <span class="card-title"
           >{{ employee.employee.user.get_full_name }}</span
         >
+        <p>Skill(s): {{ employee.employee.skills }}</p>
+        <p>Hourly Rate: ${{ employee.employee.hourly_rate }}</p>
         <form method="post">
           {% csrf_token %}
           <input
