@@ -15,7 +15,6 @@ nav {
 
 
 
-
 footer.page-footer {
     padding-top: 0;
     text-align: right;
@@ -59,3 +58,6 @@ text-align: center;
    
 }
 
+.errorlist {
+  color: red;
+}
