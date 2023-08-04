@@ -2,6 +2,7 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  text-align: center;
 }
 
 main {
@@ -60,8 +61,8 @@ p {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(0, 0, 0, 0.6);
-	color: #ffffff;
+	background: rgba(255, 255, 255, 0.6);
+	color: #000000;
 	font-family: 'Quicksand', sans-serif;
 	display: flex;
 	flex-direction: column;
@@ -74,7 +75,6 @@ p {
 .image__overlay--blur {
 	backdrop-filter: blur(5px);
 }
-
 
 .image__overlay>* {
 	transform: translateY(20px);
@@ -95,8 +95,10 @@ p {
 }
 
 .image__description {
-	font-size: 1.25em;
+	font-size: 1.10em;
 	margin-top: 0.25em;
+	margin-right: 0.35em;
+	margin-left: 0.35em;
 }
 
 button {
@@ -112,6 +114,22 @@ button {
 button:hover {
   box-shadow: 0px 10px 14px rgba(0, 0, 0, 0.2);
   cursor: pointer;
+}
+
+.btn {
+  background-color: #38b6ff;
+  color: #fff;
+  border: none;
+  margin-top: 25px;
+  border-radius: 4px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.btn:hover {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #78c2ff;
 }
 
 .container_join {
@@ -133,11 +151,7 @@ footer.page-footer {
 
 }
 
-
-
-
 .devpic {
-
   display: inline-block;
   padding: 0;
   width: 100px;
@@ -153,13 +167,28 @@ footer.page-footer {
   margin:auto;
 }
 
-
 .about-container {
   display:flex; 
   align-items: baseline;
   font-size: 2rem;
   justify-content: center;
   text-align: center;
+}
+
+.card-title {
+  text-transform: capitalize;
+  color: #0E2344;
+}
+
+.card-content {
+  padding: 0px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s;
+}
+
+.card-content:hover {
+  box-shadow: 0px 10px 14px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 }
 
 .errorlist {

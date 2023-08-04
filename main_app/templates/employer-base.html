@@ -19,8 +19,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@500&family=Bebas+Neue&family=Comfortaa&family=Concert+One&family=Manrope:wght@500&family=Monofett&family=Oxygen&family=Permanent+Marker&family=Poller+One&family=Rubik+Bubbles&family=Russo+One&display=swap"
-      rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@500&family=Bebas+Neue&family=Comfortaa&family=Concert+One&family=Manrope:wght@500&family=Monofett&family=Oxygen&family=Permanent+Marker&family=Poller+One&family=Rubik+Bubbles&family=Russo+One&display=swap" rel="stylesheet">
+    
   </head>
   <body>
     <header class="navbar-fixed">
@@ -43,8 +43,7 @@
             <li><a href="{% url 'index' %}">All Jobs</a></li>
             <li><a href="{% url 'invite_employee' %}">Invite Employee</a></li>
             <li><a href="{% url 'employees_index' %}">All Employees</a></li>
-
-            <li><a href="{% url 'logout' %}">Log Out</a></li>
+            <li><a href="{% url 'logout' %}" style="color:#DF5276">Log Out</a></li>
             {% else %}
             <a href="{% url 'employer_login' %}">Employer Login</a>
             {% endif %}
