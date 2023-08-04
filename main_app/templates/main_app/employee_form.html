@@ -1,0 +1,15 @@
+{% extends 'employer-base.html' %}
+
+{% block content %}
+
+<h1>Edit <span style="color: #0E2344">{{ employee.user.first_name }} {{ employee.user.last_name }}</span></h1>
+
+<form method="post">
+  {% csrf_token %}
+  <table>
+    {{ form.as_table }}
+  </table>
+  <input type="submit" value="Submit" class="btn">
+</form>
+
+{% endblock %}

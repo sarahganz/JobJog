@@ -387,3 +387,12 @@ def detail_employee(request, employee_id):
     employee = get_object_or_404(Employee, id=employee_id)
 
     return render(request, "employee_detail.html", {"employee": employee})
+
+class EmployeeUpdate(UpdateView):
+    model = Employee
+    fields = "__all__"
+
+
+class EmployeeDelete(DeleteView):
+    model = Employee
+    success_url = "/employees"

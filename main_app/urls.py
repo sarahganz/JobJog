@@ -17,6 +17,8 @@ urlpatterns = [
     path("employees/", views.employees_index, name="employees_index"),
     path("employees/<int:employee_id>/", views.detail_employee, name="detail_employee"),
     path("employee_dashboard/", views.employee_dashboard, name="employee_dashboard"),
+    path("employees/<int:pk>/update/", views.EmployeeUpdate.as_view(), name="employees_update"),
+    path("employees/<int:pk>/delete/", views.EmployeeDelete.as_view(), name="employees_delete"),
     path(
         "employee/registration/<str:token>/",
         views.employee_registration,
