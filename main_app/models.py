@@ -10,20 +10,6 @@ STATUSES = (
 )
 
 
-class Job(models.Model):
-    description = models.CharField(max_length=250)
-    address = models.CharField(max_length=250)
-    date = models.DateField("Job Date")
-    time = models.TimeField(("Job Time"), blank=True)
-    status = models.CharField(max_length=1, choices=STATUSES, default=STATUSES[0][0])
-
-    def __str__(self):
-        return f"{self.description} ({self.id})"
-
-    def get_absolute_url(self):
-        return reverse("detail", kwargs={"job_id": self.id})
-
-
 class CustomUser(AbstractUser):
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100, unique=True)
@@ -40,6 +26,21 @@ class Employee(models.Model):
     employer = models.ForeignKey(Employer, on_delete=models.CASCADE)
     skills = models.CharField(max_length=100)
     hourly_rate = models.IntegerField()
+
+
+class Job(models.Model):
+    description = models.CharField(max_length=250)
+    address = models.CharField(max_length=250)
+    date = models.DateField("Job Date")
+    time = models.TimeField(("Job Time"), blank=True)
+    status = models.CharField(max_length=1, choices=STATUSES, default=STATUSES[0][0])
+    employer = models.ForeignKey(Employer, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.description} ({self.id})"
+
+    def get_absolute_url(self):
+        return reverse("detail", kwargs={"job_id": self.id})
 
 
 class EmployeeAssignment(models.Model):
