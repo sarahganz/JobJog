@@ -17,32 +17,37 @@
       href="{% static 'css/style.css' %}"
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Arimo:wght@500&family=Bebas+Neue&family=Comfortaa&family=Concert+One&family=Manrope:wght@500&family=Monofett&family=Oxygen&family=Permanent+Marker&family=Poller+One&family=Rubik+Bubbles&family=Russo+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Arimo:wght@500&family=Bebas+Neue&family=Comfortaa&family=Concert+One&family=Manrope:wght@500&family=Monofett&family=Oxygen&family=Permanent+Marker&family=Poller+One&family=Rubik+Bubbles&family=Russo+One&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-
-
-
     <header class="navbar-fixed">
       <nav>
-          <div class="nav-wrapper">
-              <ul>
-                  <li><a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp;
-                    <img src="https://i.imgur.com/pMrDqc1.png" style="width: 120px;
-                    object-fit: contain;">
-                  </a></li>
-              </ul>
-              <ul class="right">
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'about' %}">About</a></li>
-                <li><a href="{% url 'employer_login' %}">Employer Login</a></li>
-                <li><a href="{% url 'login' %}">Employee Login</a></li>
-              </ul>
-          </div>
+        <div class="nav-wrapper">
+          <ul>
+            <li>
+              <a href="{% url 'home' %}" class="left brand-logo"
+                >&nbsp;&nbsp;
+                <img
+                  src="https://i.imgur.com/pMrDqc1.png"
+                  style="width: 120px; object-fit: contain"
+                />
+              </a>
+            </li>
+          </ul>
+          <ul class="right">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'employer_login' %}">Employer Login</a></li>
+            <li><a href="{% url 'login' %}">Employee Login</a></li>
+          </ul>
+        </div>
       </nav>
-  </header>
+    </header>
 
     <main class="container">{% block content %} {% endblock %}</main>
     <footer class="page-footer">
