@@ -76,7 +76,6 @@ p {
 	backdrop-filter: blur(5px);
 }
 
-
 .image__overlay>* {
 	transform: translateY(20px);
 	transition: transform 0.25s;
@@ -152,11 +151,7 @@ footer.page-footer {
 
 }
 
-
-
-
 .devpic {
-
   display: inline-block;
   padding: 0;
   width: 100px;
@@ -171,7 +166,6 @@ footer.page-footer {
   display:block;
   margin:auto;
 }
-
 
 .about-container {
   display:flex; 
