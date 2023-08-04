@@ -64,23 +64,28 @@ class InviteEmployeeForm(forms.Form):
 #         return user
 
 
-
 class EmployerRegistrationForm(UserCreationForm):
-    
     company_name = forms.CharField(max_length=100)  # Add company_name field here
 
     class Meta(UserCreationForm.Meta):
         model = CustomUser
 
-        fields = ["username", "company_name", "email", "phone_number", "password1", "password2",]
-
+        fields = [
+            "username",
+            "company_name",
+            "email",
+            "phone_number",
+            "password1",
+            "password2",
+        ]
 
     def save(self, commit=True):
         user = super().save(commit=False)
         if commit:
             user.save()
-           
+
         return user
+
 
 class EmployerLoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
@@ -108,4 +113,16 @@ class EmployeeLoginForm(AuthenticationForm):
         )
 
 
-from django.forms import ModelForm
+class AssignEmployeeForm(forms.Form):
+    employees = forms.ModelMultipleChoiceField(
+        queryset=None,
+        widget=forms.CheckboxSelectMultiple,
+        label="Select Employees",
+    )
+
+    def __init__(self, *args, employees=None, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["employees"].queryset = employees
+        self.fields[
+            "employees"
+        ].label_from_instance = lambda obj: obj.user.get_full_name()

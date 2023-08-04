@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
 
 STATUSES = (
-    ("I", "Incomplete"),
-    ("C", "Complete"),
+    ("Incomplete", "Incomplete"),
+    ("Complete", "Complete"),
 )
 
 
@@ -33,7 +33,7 @@ class Job(models.Model):
     address = models.CharField(max_length=250)
     date = models.DateField("Job Date")
     time = models.TimeField(("Job Time"), blank=True)
-    status = models.CharField(max_length=1, choices=STATUSES, default=STATUSES[0][0])
+    status = models.CharField(max_length=10, choices=STATUSES, default=STATUSES[0][0])
     employer = models.ForeignKey(Employer, on_delete=models.CASCADE)
 
     def __str__(self):
