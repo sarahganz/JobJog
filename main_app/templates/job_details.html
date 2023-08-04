@@ -12,7 +12,10 @@
     </div>
     <h2 class="teal-text">Please upload a photo of your completed job.</h2>
     {% for photo in job.photo_set.all %}
-    <img class="responsive-img card-panel" src="{{ photo.url }}" />
+    <div class="card-panel">
+      <img class="responsive-img" src="{{ photo.url }}" />
+      <a href="{% url 'delete_photo' photo.id %}" class="btn red">Delete</a>
+    </div>
     {% empty %}
     <div class="card-panel teal-text center-align">No Photos Uploaded</div>
     {% endfor %}
