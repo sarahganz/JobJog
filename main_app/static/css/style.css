@@ -17,29 +17,36 @@ background-color: #0E2344;
   max-width: 40%;
 }
 
-h1 {
-  text-align: center;
-  color:  #38b6ff;
-  font-family: 'Russo One', sans-serif;
-}
 
 h2 {
   font-family: 'Russo One', sans-serif;
   color: #DF5276;
   font-size: 30px;
+  text-transform: capitalize;
 }
 
 .statement {
   font-size: 22px;
 }
 
+
+  
+h1 {
+    text-align: center;
+    color:  #38b6ff;
+    font-family: 'Russo One', sans-serif;
+    text-transform: capitalize;
+
 p {
   margin-bottom: 20px;
 }
 
+
 * {
   box-sizing: border-box;
 }
+
+
 
 .column {
   float: left;
