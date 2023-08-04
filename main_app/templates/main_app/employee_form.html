@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1>Edit <span style="color: #0E2344">{{ employee.user.first_name }} {{ employee.user.last_name }}</span></h1>
+<h1>Edit <span style="color: #0E2344; text-transform: capitalize;">{{ employee.user.first_name }} {{ employee.user.last_name }}</span></h1>
 
 <form method="post">
   {% csrf_token %}

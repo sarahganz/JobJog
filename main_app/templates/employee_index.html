@@ -6,9 +6,7 @@
 <div class="card">
   <a href="{% url 'detail_employee' employee.id %}">
     <div class="card-content">
-      <span class="card-title"></span>
-      <p>First Name: {{ employee.user.first_name }}</p>
-      <p>Last Name: {{ employee.user.last_name }}</p>
+      <span class="card-title">{{ employee.user.first_name }} {{ employee.user.last_name }}</span>
       <p>Email: {{ employee.user.email }}</p>
       <p>Phone Number: {{ employee.user.phone_number }}</p>
       <p>Skill(s): {{ employee.skills }}</p>

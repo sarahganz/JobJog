@@ -1,19 +1,18 @@
 {% extends 'employee-base.html' %} {% block content %}
-
+<h1>{{ job.description }}</h1>
 <div class="row">
-  <div class="col s6">
+  <div class="col s12">
     <div class="card">
       <div class="card-content">
-        <h1>{{ job.description }}</h1>
         <p>Address: {{ job.address }}</p>
         <p>Date: {{ job.date }}</p>
         <p>Time: {{ job.time }}</p>
         <p>Status: {{ job.get_status_display }}</p>
       </div>
     </div>
-    <h2>Please upload a photo of your completed job.</h2>
+    <h2 class="teal-text">Please upload a photo of your completed job.</h2>
     {% for photo in job.photo_set.all %}
-    <img class="responsive-img card-panel" src="{{photo.url}}" />
+    <img class="responsive-img card-panel" src="{{ photo.url }}" />
     {% empty %}
     <div class="card-panel teal-text center-align">No Photos Uploaded</div>
     {% endfor %}
@@ -29,14 +28,14 @@
       <button type="submit" class="btn">Upload Photo</button>
     </form>
   </div>
+</div>
 
-  <div class="col s6">
-    {% if not clocked_in %}
+<div class="col s6">
+  <div>
     <a href="{% url 'clock_in' assignment.id %}">Clock In</a>
-    {% endif %} {% if clocked_in and not clocked_out %}
-    <p>You are clocked in.</p>
+  </div>
+  <div>
     <a href="{% url 'clock_out' assignment.id %}">Clock Out</a>
-    {% endif %}
   </div>
 </div>
 

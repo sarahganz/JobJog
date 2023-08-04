@@ -41,6 +41,8 @@ from django.utils.crypto import get_random_string
 from django.http import HttpResponse
 from django.utils.crypto import get_random_string
 from django.forms import ModelChoiceField
+from django.utils import timezone
+from datetime import timedelta
 
 
 def home(request):
@@ -296,26 +298,20 @@ def job_assignment(request):
     return render(request, "job_assignment.html", {"form": form})
 
 
-@login_required
 def clock_in(request, assignment_id):
-    assignment = EmployeeAssignment.objects.get(pk=assignment_id)
-
+    assignment = get_object_or_404(EmployeeAssignment, id=assignment_id)
     if assignment.clock_in is None:
-        assignment.clock_in = timezone.now()
+        assignment.clock_in = timezone.now() - timedelta(hours=4)
         assignment.save()
+    return redirect("job_details", job_id=assignment.job.id)
 
-    return redirect("employee_dashboard")
 
-
-@login_required
 def clock_out(request, assignment_id):
-    assignment = EmployeeAssignment.objects.get(pk=assignment_id)
-
-    if assignment.clock_out is None and assignment.clock_in is not None:
-        assignment.clock_out = timezone.now()
+    assignment = get_object_or_404(EmployeeAssignment, id=assignment_id)
+    if assignment.clock_in is not None and assignment.clock_out is None:
+        assignment.clock_out = timezone.now() - timedelta(hours=4)
         assignment.save()
-
-    return redirect("employee_dashboard")
+    return redirect("job_details", job_id=assignment.job.id)
 
 
 @login_required
@@ -336,13 +332,18 @@ def add_photo(request, job_id):
         except Exception as e:
             print("An error occurred uploading file to S3")
             print(e)
-    return redirect("detail", job_id=job_id)
+    return redirect("job_details", job_id=job_id)
 
 
 @login_required
 def job_details(request, job_id):
     job = get_object_or_404(Job, pk=job_id)
-    return render(request, "job_details.html", {"job": job})
+    employee = request.user.employee
+
+    # Retrieve the assignment for the given job and employee
+    assignment = EmployeeAssignment.objects.filter(employee=employee, job=job).first()
+
+    return render(request, "job_details.html", {"job": job, "assignment": assignment})
 
 
 def jobs_detail(request, job_id):
@@ -422,7 +423,7 @@ def assign_employee_to_job(request, job_id):
 
     return render(request, "assign_employee_to_job.html", context)
 
-  
+
 class EmployeeUpdate(UpdateView):
     model = Employee
     fields = "__all__"
@@ -437,4 +438,8 @@ def employee_assignments(request, employee_id):
     employee = Employee.objects.get(pk=employee_id)
     print(employee)
     assignments = EmployeeAssignment.objects.filter(employee=employee)
-    return render(request, 'employee_assignments.html', {'employee': employee, 'assignments': assignments})
+    return render(
+        request,
+        "employee_assignments.html",
+        {"employee": employee, "assignments": assignments},
+    )
