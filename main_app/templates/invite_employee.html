@@ -2,7 +2,7 @@
 <h2>Invite Employee</h2>
 <form method="post">
   {% csrf_token %} {{ form.as_p }}
-  <button type="submit">Send Invite</button>
+  <button type="submit">Get Invite Link</button>
 </form>
 
 {% if invite_link %}
