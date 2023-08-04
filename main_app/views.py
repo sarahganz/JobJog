@@ -429,3 +429,10 @@ class EmployeeUpdate(UpdateView):
 class EmployeeDelete(DeleteView):
     model = Employee
     success_url = "/employees"
+
+
+def employee_assignments(request, employee_id):
+    employee = Employee.objects.get(pk=employee_id)
+    print(employee)
+    assignments = EmployeeAssignment.objects.filter(employee=employee)
+    return render(request, 'employee_assignments.html', {'employee': employee, 'assignments': assignments})
