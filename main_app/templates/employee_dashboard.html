@@ -1,6 +1,6 @@
 {% extends 'employee-base.html' %} {% block content %}
-<h1>Welcome, {{ employee.name }}!</h1>
-<p>Company: {{ employee.employer.company_name }}</p>
+<h1>Welcome {{ employee.user.first_name }} {{ employee.user.last_name }}!</h1>
+<p>Employed at Company: {{ employee.employer.company_name }}</p>
 <p>Email: {{ employee.user.email }}</p>
 <p>Phone: {{ employee.user.phone_number }}</p>
 
