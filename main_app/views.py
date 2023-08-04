@@ -19,7 +19,7 @@ from .models import (
     EmployeeAssignment,
     Job,
     EmployeeInvitation,
-    Photo
+    Photo,
 )
 from datetime import datetime
 from .forms import (
@@ -350,6 +350,7 @@ def jobs_detail(request, job_id):
 
 def jobs_index(request):
     jobs = Job.objects.all()
+
     return render(request, "jobs/index.html", {"jobs": jobs})
 
 
@@ -369,7 +370,8 @@ class JobDelete(DeleteView):
 
 
 def employees_index(request):
-    employees = Employee.objects.all()
+    employees = Employee.objects.filter(employer=request.user.employer)
+
     return render(request, "employee_index.html", {"employees": employees})
 
 
