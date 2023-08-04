@@ -45,31 +45,42 @@ class InviteEmployeeForm(forms.Form):
     employee_email = forms.EmailField(label="Employee Email", max_length=254)
 
 
+# class EmployerRegistrationForm(UserCreationForm):
+#     password = forms.CharField(widget=forms.PasswordInput)
+#     company_name = forms.CharField(max_length=100)  # Add company_name field here
+
+#     class Meta(UserCreationForm.Meta):
+#         model = CustomUser
+#         fields = ["username", "email", "phone_number", "password"]
+
+#     def save(self, commit=True):
+#         user = super().save(commit=False)
+#         user.set_password(self.cleaned_data["password"])
+#         if commit:
+#             user.save()
+#             Employer.objects.create(
+#                 user=user, company_name=self.cleaned_data["company_name"]
+#             )  # Update this line
+#         return user
+
+
+
 class EmployerRegistrationForm(UserCreationForm):
-    password = forms.CharField(widget=forms.PasswordInput)
+    
     company_name = forms.CharField(max_length=100)  # Add company_name field here
 
     class Meta(UserCreationForm.Meta):
         model = CustomUser
-        fields = [
-            "first_name",
-            "last_name",
-            "username",
-            "email",
-            "phone_number",
-            "password",
-        ]
+
+        fields = ["username", "company_name", "email", "phone_number", "password1", "password2",]
+
 
     def save(self, commit=True):
         user = super().save(commit=False)
-        user.set_password(self.cleaned_data["password"])
         if commit:
             user.save()
-            Employer.objects.create(
-                user=user, company_name=self.cleaned_data["company_name"]
-            )  # Update this line
+           
         return user
-
 
 class EmployerLoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
