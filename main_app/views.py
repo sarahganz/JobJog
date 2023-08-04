@@ -365,3 +365,15 @@ class JobUpdate(UpdateView):
 class JobDelete(DeleteView):
     model = Job
     success_url = "/jobs"
+
+
+def employees_index(request):
+    employees = Employee.objects.all()
+    return render(request, "employee_index.html", {"employees": employees})
+
+
+def detail_employee(request, employee_id):
+    # Get the employee object using the provided employee_id
+    employee = get_object_or_404(Employee, id=employee_id)
+
+    return render(request, "employee_detail.html", {"employee": employee})

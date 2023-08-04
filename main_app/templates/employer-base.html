@@ -43,7 +43,8 @@
             {% if user.is_authenticated %}
             <li><a href="{% url 'jobs_create' %}">Add a Job</a></li>
             <li><a href="{% url 'index' %}">All Jobs</a></li>
-            <li><a href=""></a>All Employees</li>
+            <li><a href="{% url 'invite_employee' %}">Invite Employee</a></li>
+            <li><a href="{% url 'employees_index' %}">All Employees</a></li>
             <li><a href="{% url 'logout' %}">Log Out</a></li>
             {% else %}
             <a href="{% url 'employer_login' %}">Employer Login</a>

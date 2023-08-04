@@ -13,8 +13,10 @@ urlpatterns = [
     path("accounts/login/", views.employee_login, name="employee_login"),
     path("employer/logout/", views.employer_logout, name="employer_logout"),
     path("employer/dashboard/", views.employer_dashboard, name="employer_dashboard"),
-    path("employee/dashboard/", views.employee_dashboard, name="employee_dashboard"),
     path("invite_employee/", views.invite_employee, name="invite_employee"),
+    path("employees/", views.employees_index, name="employees_index"),
+    path("employees/<int:employee_id>/", views.detail_employee, name="detail_employee"),
+    path("employee_dashboard/", views.employee_dashboard, name="employee_dashboard"),
     path(
         "employee/registration/<str:token>/",
         views.employee_registration,
