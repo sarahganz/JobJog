@@ -19,7 +19,7 @@ from .models import (
     EmployeeAssignment,
     Job,
     EmployeeInvitation,
-    Photo
+    Photo,
 )
 from datetime import datetime
 from .forms import (
@@ -349,13 +349,21 @@ def jobs_detail(request, job_id):
 
 
 def jobs_index(request):
-    jobs = Job.objects.all()
+    print(request.user.id)
+    jobs = Job.objects.filter(employer=request.user.employer)
     return render(request, "jobs/index.html", {"jobs": jobs})
 
 
 class JobCreate(CreateView):
     model = Job
     fields = ["description", "address", "date", "time", "status"]
+
+    def form_valid(self, form):
+        # Get the logged-in employer and assign it to the job
+        form.instance.employer = self.request.user.employer
+
+        # Call the parent class's form_valid method to save the job to the database
+        return super().form_valid(form)
 
 
 class JobUpdate(UpdateView):
@@ -369,7 +377,8 @@ class JobDelete(DeleteView):
 
 
 def employees_index(request):
-    employees = Employee.objects.all()
+    employees = Employee.objects.filter(employer=request.user.employer)
+
     return render(request, "employee_index.html", {"employees": employees})
 
 

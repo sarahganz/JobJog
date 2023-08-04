@@ -71,7 +71,9 @@ class EmployerRegistrationForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
         model = CustomUser
+
         fields = ["username", "company_name", "email", "phone_number", "password1", "password2",]
+
 
     def save(self, commit=True):
         user = super().save(commit=False)
