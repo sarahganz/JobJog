@@ -442,3 +442,19 @@ def employee_assignments(request, employee_id):
         "employee_assignments.html",
         {"employee": employee, "assignments": assignments},
     )
+
+
+from django.contrib import messages
+
+
+@login_required
+def delete_photo(request, photo_id):
+    photo = get_object_or_404(Photo, id=photo_id)
+
+    if request.method == "POST":
+        job_id = photo.job.id
+        photo.delete()
+        messages.success(request, "Photo deleted successfully")
+        return redirect("job_details", job_id=job_id)
+
+    return render(request, "delete_photo_confirm.html", {"photo": photo})
