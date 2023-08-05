@@ -31,7 +31,7 @@ from .forms import (
     EmployeeLoginForm,
     AssignEmployeeForm,
 )
-from django.utils import timezone
+
 from .models import Job
 from django.urls import reverse
 from django.core import signing
@@ -298,21 +298,20 @@ def job_assignment(request):
     return render(request, "job_assignment.html", {"form": form})
 
 
+def clock_out(request, assignment_id):
+    assignment = get_object_or_404(EmployeeAssignment, id=assignment_id)
+    if assignment.clock_in and not assignment.clock_out:
+        assignment.clock_out = timezone.now() - timedelta(hours=4)
+        assignment.save()
+    return redirect("job_details", job_id=assignment.job.id)
+
+@login_required
 def clock_in(request, assignment_id):
     assignment = get_object_or_404(EmployeeAssignment, id=assignment_id)
     if assignment.clock_in is None:
         assignment.clock_in = timezone.now() - timedelta(hours=4)
         assignment.save()
     return redirect("job_details", job_id=assignment.job.id)
-
-
-def clock_out(request, assignment_id):
-    assignment = get_object_or_404(EmployeeAssignment, id=assignment_id)
-    if assignment.clock_in is not None and assignment.clock_out is None:
-        assignment.clock_out = timezone.now() - timedelta(hours=4)
-        assignment.save()
-    return redirect("job_details", job_id=assignment.job.id)
-
 
 @login_required
 def add_photo(request, job_id):
