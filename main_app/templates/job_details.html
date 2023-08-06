@@ -9,7 +9,7 @@
         <p>Time: {{ job.time }}</p>
         <p>Status: {{ job.get_status_display }}</p>
         {% if assignment.clock_in %} {% if assignment.clock_out %}
-        <h3>You are Clocked Out</h3>
+        <h3 class="lightblue">You are Clocked Out</h3>
         <p>Clocked In at: {{ assignment.clock_in }}</p>
         <p>Clocked Out at: {{ assignment.clock_out }}</p>
         {% else %}
@@ -18,16 +18,18 @@
         </h3>
         <div class="card-panel">
           <div>
-            <a href="{% url 'clock_out' assignment.id %}">Clock Out</a>
+            <a href="{% url 'clock_out' assignment.id %}" class="btn"
+              >Clock Out</a
+            >
           </div>
         </div>
         {% endif %} {% else %}
-        <h3 style="font-size: 30px" class="teal-text">
-          You are Not Clocked In
-        </h3>
+        <h3 class="lightblue">You are Not Clocked In</h3>
         <div class="card-panel">
           <div>
-            <a href="{% url 'clock_in' assignment.id %}">Clock In</a>
+            <a href="{% url 'clock_in' assignment.id %}" class="btn"
+              >Clock In</a
+            >
           </div>
         </div>
         {% endif %}

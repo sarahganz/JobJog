@@ -96,18 +96,7 @@
       {% csrf_token %} {{ form.as_p }}
       <button type="submit">Register</button>
     </form>
-    <br />
-    <h2>Employer Login</h2>
-    <a href="{% url 'employer_login' %}" class="btn">Sign in</a>
-  </div>
-
-  <div class="employee_login">
-    <h2>Employee Login</h2>
-    <form method="post" action="{% url 'login' %}">
-      {% csrf_token %} {{ form.as_p }}
-      <button type="submit">Sign In</button>
-    </form>
   </div>
 </div>
-<br />
+<br /><br />
 {% endblock %}
