@@ -306,6 +306,7 @@ def clock_out(request, assignment_id):
         assignment.save()
     return redirect("job_details", job_id=assignment.job.id)
 
+
 @login_required
 def clock_in(request, assignment_id):
     assignment = get_object_or_404(EmployeeAssignment, id=assignment_id)
@@ -313,6 +314,7 @@ def clock_in(request, assignment_id):
         assignment.clock_in = timezone.now() - timedelta(hours=4)
         assignment.save()
     return redirect("job_details", job_id=assignment.job.id)
+
 
 @login_required
 def add_photo(request, job_id):
@@ -390,6 +392,11 @@ class EmployeeUpdate(UpdateView):
     model = Employee
     form_class = CustomEmployeeUpdateForm
     template_name = "employee_update_form.html"
+
+
+class JobUpdate(UpdateView):
+    model = Job
+    fields = ["description", "address", "date", "time", "status"]
 
 
 class JobDelete(DeleteView):
