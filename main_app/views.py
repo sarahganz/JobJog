@@ -219,33 +219,20 @@ def employee_registration(request, token):
             # Create the user account
             hourly_rate = form.cleaned_data["hourly_rate"]
             skills = form.cleaned_data["skills"]
-            print("before user save line 183")
             form.employer = invitation.employer
-            print(form)
             user = form.save()
-            print("after user save line 185")
-            print(user)
             employee, created = Employee.objects.get_or_create(
                 user=user,
                 employer=invitation.employer,
                 hourly_rate=hourly_rate,
                 skills=skills,
             )
-            print("after line 186")
             if not created:
                 employee.hourly_rate = hourly_rate
                 employee.skills = skills
                 employee.employer = invitation.employer.id
                 employee.save()
             employer = invitation.employer
-            # Create the employee profile
-            # employee = Employee.objects.create(
-            #     user=user,
-            #     email=invitation.email,
-            #     employer=employer,
-            #     hourly_rate=hourly_rate,
-            #     skills=skills,
-            # )
             print(employee)
             return redirect("employee_dashboard")
     else:

@@ -1,9 +1,15 @@
 {% extends 'employee-base.html' %} {% block content %}
-
-<h1>Welcome, {{ employee.user.first_name }} {{ employee.user.last_name }}!</h1>
-<p>Employed at: {{ employee.employer.company_name }}</p>
-<p>Email: {{ employee.user.email }}</p>
-<p>Phone: {{ employee.user.phone_number }}</p>
+<br><br>
+<div class="dashboard-container">
+  <div class="dashboard-header">
+    <h1>Welcome, {{ employee.user.first_name }} {{ employee.user.last_name }}!</h1>
+  </div>
+  <div class="user-info">
+    <p>Employed at: {{ employee.employer.company_name }}</p>
+    <p>Email: {{ employee.user.email }}</p>
+    <p>Phone: {{ employee.user.phone_number }}</p>
+  </div>
+</div>
 
 <h2>Assigned Jobs:</h2>
 

@@ -1,11 +1,9 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
 
-{% block content %}
-
-<h2>Employer Registration</h2>
+<h1>Employer Registration</h1>
 <form method="post">
   {% csrf_token %} {{ form.as_p }}
   <button type="submit">Register as Employer</button>
 </form>
-
+<br />
 {% endblock %}

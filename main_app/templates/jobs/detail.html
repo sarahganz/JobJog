@@ -4,23 +4,20 @@
 
 <div class="card">
   <div class="card-content">
-    <span class="card-title">{{ job.description }}</span>
+    <span class="card-title"><h3>{{ job.description }}</h3></span>
     <p>Location: {{ job.address }}</p>
     <p>Date: {{ job.date|linebreaks }}</p>
     <p>Time: {{ job.time }}</p>
     <p>Status: {{ job.status }}</p>
+    <a href="{% url 'assign_employee_to_job' job_id=job.id %}" class="btn"
+      >Assign Employees</a
+    >
   </div>
   <div class="card-action">
-    <a href="{% url 'jobs_update' job.id %}">Edit</a>
-    <a href="{% url 'jobs_delete' job.id %}">Delete</a>
+    <a href="{% url 'jobs_update' job.id %}" class="btn">Edit</a>
+    <a href="{% url 'jobs_delete' job.id %}" class="btn">Delete</a>
   </div>
 </div>
-
-<h4>
-  <a href="{% url 'assign_employee_to_job' job_id=job.id %}"
-    >Click to Assign Employees</a
-  >
-</h4>
 
 <h2>Employees Assigned to This Job</h2>
 {% if assigned_employees %} {% for employee in assigned_employees %}
