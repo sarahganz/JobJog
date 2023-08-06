@@ -5,7 +5,7 @@
   JobJog is a user-friendly web application designed to streamline company operations by empowering employers to efficiently manage their employees' assignments and responsibilities. This comprehensive platform allows companies to easily add new employees, assign work duties, and track workforce performance seamlessly.
 </p>
 
-<h2>Key Features</h2>
+<h2 class="homeh2">Key Features</h2>
 
 <div class="row">
   <div class="column">
@@ -53,7 +53,7 @@
 
 <div class="container_join">
   <div class="employer_registration">
-    <h2>Employer Registration</h2>
+    <h2 class="homeh2">Employer Registration</h2>
     <form method="post" action="{% url 'employer_registration' %}">
       {% csrf_token %} {{ form.as_p }}
       <button type="submit">Register</button>
@@ -65,7 +65,7 @@
   </div>
   
   <div class="employee_login">
-    <h2>Employee Login</h2>
+    <h2 class="homeh2">Employee Login</h2>
     <form method="post" action="{% url 'login' %}">
       {% csrf_token %} {{ form.as_p }}
       <button type="submit">Sign In</button>

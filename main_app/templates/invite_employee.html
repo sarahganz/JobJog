@@ -1,6 +1,6 @@
 {% extends 'employer-base.html' %} {% block content %}
 <h1>Invite Employee</h1>
-<form method="post">
+<form class="form" method="post">
   {% csrf_token %} {{ form.as_p }}
   <button type="submit">Get Invite Link</button>
 </form>
