@@ -30,6 +30,7 @@ from .forms import (
     EmployerLoginForm,
     EmployeeLoginForm,
     AssignEmployeeForm,
+    CustomEmployeeUpdateForm,
 )
 from django.utils import timezone
 from .models import Job
@@ -316,19 +317,21 @@ def clock_out(request, assignment_id):
 
 @login_required
 def add_photo(request, job_id):
+    # Get the current employee who is uploading the photo
+    employee = request.user.employee
+
     # photo-file maps to the "name" attr on the <input>
     photo_file = request.FILES.get("photo-file", None)
     if photo_file:
         s3 = boto3.client("s3")
-        # Need a unique "key" (filename)
-        # It needs to keep the same file extension
-        # of the file that was uploaded (.png, .jpeg, etc.)
         key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind(".") :]
         try:
             bucket = os.environ["S3_BUCKET"]
             s3.upload_fileobj(photo_file, bucket, key)
             url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
-            Photo.objects.create(url=url, job_id=job_id)
+
+            # Save the photo with the uploaded_by field and timestamp
+            Photo.objects.create(url=url, job_id=job_id, uploaded_by=employee)
         except Exception as e:
             print("An error occurred uploading file to S3")
             print(e)
@@ -350,7 +353,11 @@ def jobs_detail(request, job_id):
     job = get_object_or_404(Job, id=job_id)
     employee_assignments = EmployeeAssignment.objects.filter(job=job)
     assigned_employees = [assignment.employee for assignment in employee_assignments]
-    return render(request, 'jobs/detail.html', {'job': job, 'assigned_employees': assigned_employees})
+    return render(
+        request,
+        "jobs/detail.html",
+        {"job": job, "assigned_employees": assigned_employees},
+    )
 
 
 def jobs_index(request):
@@ -371,9 +378,19 @@ class JobCreate(CreateView):
         return super().form_valid(form)
 
 
-class JobUpdate(UpdateView):
-    model = Job
-    fields = ["description", "address", "date", "time", "status"]
+from django.contrib.auth.forms import UserChangeForm
+
+
+class CustomEmployeeUpdateForm(UserChangeForm):
+    class Meta:
+        model = Employee
+        fields = ["skills", "hourly_rate"]
+
+
+class EmployeeUpdate(UpdateView):
+    model = Employee
+    form_class = CustomEmployeeUpdateForm
+    template_name = "employee_update_form.html"
 
 
 class JobDelete(DeleteView):
@@ -426,7 +443,8 @@ def assign_employee_to_job(request, job_id):
 
 class EmployeeUpdate(UpdateView):
     model = Employee
-    fields = "__all__"
+    form_class = CustomEmployeeUpdateForm
+    template_name = "employee_update_form.html"
 
 
 class EmployeeDelete(DeleteView):
