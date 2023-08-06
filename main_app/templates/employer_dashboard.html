@@ -2,10 +2,13 @@
 
 <br />
 <h1>Welcome, {{ employer.user.first_name }} {{ employer.user.last_name }}!</h1>
-<div class="dashboard-container animated fadeIn">
-  <p>Company: {{ employer.company_name }}</p>
+
+<div class="dashboard-container" class="dashboard-container animated fadeIn">
+  <h3>Company: {{ employer.company_name }}</h3>
+  <div class="cardalign" id="nopad">
   <p>Email: {{ employer.user.email }}</p>
   <p>Phone: {{ employer.user.phone_number }}</p>
+</div>
 </div>
 <br /><br />
 <div class="slideInLeft animated">

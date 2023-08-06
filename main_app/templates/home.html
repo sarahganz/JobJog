@@ -15,7 +15,7 @@
   workforce performance seamlessly.
 </p>
 
-<h2>KEY FEATURES</h2>
+<h2 class="homeh2">KEY FEATURES</h2>
 
 <div class="row">
   <div class="column">
@@ -91,12 +91,12 @@
 
 <div class="container_join">
   <div class="employer_registration">
-    <h2>Employer Registration</h2>
-    <form method="post" action="{% url 'employer_registration' %}">
+    <h2 class="homeh2">Employer Registration</h2>
+    <form class="nocolor" method="post" action="{% url 'employer_registration' %}">
       {% csrf_token %} {{ form.as_p }}
       <button type="submit">Register</button>
     </form>
   </div>
 </div>
-<br /><br />
+<br/><br />
 {% endblock %}

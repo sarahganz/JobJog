@@ -3,6 +3,7 @@
 <h1>Employee List</h1>
 
 {% for employee in employees %}
+<div class="cardmarg">
 <div class="card">
   <a href="{% url 'detail_employee' employee.id %}">
     <div class="card-content">
@@ -11,12 +12,15 @@
           {{ employee.user.first_name }} {{ employee.user.last_name }}
         </h3></span
       >
+      <div class="cardalign">
       <p>Email: {{ employee.user.email }}</p>
       <p>Phone Number: {{ employee.user.phone_number }}</p>
       <p>Skill(s): {{ employee.skills }}</p>
       <p>Hourly Rate: ${{ employee.hourly_rate }}</p>
     </div>
+    </div>
   </a>
+</div>
 </div>
 {% endfor %}
 <br />{% endblock %}

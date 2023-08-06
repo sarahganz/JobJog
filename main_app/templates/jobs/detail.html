@@ -9,13 +9,11 @@
     <p>Date: {{ job.date|linebreaks }}</p>
     <p>Time: {{ job.time }}</p>
     <p>Status: {{ job.status }}</p>
-    <a href="{% url 'assign_employee_to_job' job_id=job.id %}" class="btn"
-      >Assign Employees</a
-    >
-  </div>
-  <div class="card-action">
     <a href="{% url 'jobs_update' job.id %}" class="btn">Edit</a>
     <a href="{% url 'jobs_delete' job.id %}" class="btn">Delete</a>
+  </div>
+  <div class="card-action">
+    <a href="{% url 'assign_employee_to_job' job_id=job.id %}" class="btn">Assign Employees</a>
   </div>
 </div>
 <br /><br />
