@@ -76,6 +76,8 @@ class EmployerRegistrationForm(UserCreationForm):
 
         fields = [
             "username",
+            "first_name",
+            "last_name",
             "company_name",
             "email",
             "phone_number",

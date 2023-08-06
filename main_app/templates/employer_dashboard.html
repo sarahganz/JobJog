@@ -1,8 +1,20 @@
-{% extends 'employer-base.html' %} {% block content %}
-
-<h1>Welcome, {{ employer.user.username }}!</h1>
-<p>Company: {{ employer.company_name }}</p>
-<p>Email: {{ employer.user.email }}</p>
-<p>Phone: {{ employer.user.phone_number }}</p>
+{% extends 'employer-base.html' %} {% block content %} <br /><br />
+<div class="dashboard-container">
+  <div class="dashboard-header">
+    <h1>
+      Welcome {{ employer.user.first_name }} {{ employer.user.last_name }}!
+    </h1>
+  </div>
+  <div class="user-info">
+    <p>Company: {{ employer.company_name }}</p>
+    <p>Email: {{ employer.user.email }}</p>
+    <p>Phone: {{ employer.user.phone_number }}</p>
+  </div>
+</div>
+<br /><br />
+<a href="{% url 'jobs_create' %}" class="btn">Add a Job</a>
+<a href="{% url 'index' %}" class="btn">All Jobs</a>
+<a href="{% url 'invite_employee' %}" class="btn">Invite Employee</a>
+<a href="{% url 'employees_index' %}" class="btn">All Employees</a>
 
 {% endblock %}

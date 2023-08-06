@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 
-<h2>Employee Registration</h2>
+<h1>Employee Registration</h1>
 <h4>
   Please use the same email as the email you recived this link to sign up.
 </h4>
@@ -8,4 +8,5 @@
   {% csrf_token %} {{ form.as_p }}
   <button type="submit">Register</button>
 </form>
+<br />
 {% endblock %}

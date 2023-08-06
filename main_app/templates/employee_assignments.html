@@ -1,26 +1,20 @@
-{% extends 'employer-base.html' %}
+{% extends 'employer-base.html' %} {% block content %}
 
-{% block content %}
+<h1>
+  Time Cards: {{ employee.user.first_name }} {{ employee.user.last_name }}
+</h1>
 
-
-    <h1>Time Cards</h1>
-
-    <h2>Employee: {{ employee.user.first_name }} {{ employee.user.last_name }}</h2>
- 
-        {% for assignment in assignments %}
-            <div class="card">
-                <a href=>
-                  <div class="card-content">
-                    <span class="card-title">{{ assignment.job.date }}</span>
-                    <p>Job: {{ assignment.job }} </p>
-                    <p>Clock In Time: {{ assignment.clock_in }}</p>
-                    <p>Clock Out Time: {{ assignment.clock_out }}</p>
-                  </div>
-                </a>
-              </div>
-              {% empty %}
-              <p>Employee does not have any timecards</p>
-        {% endfor %}
-    
-
-{% endblock %}
+{% for assignment in assignments %}
+<div class="card">
+  <a href="">
+    <div class="card-content">
+      <span class="card-title"><h3>{{ assignment.job.date }}</h3></span>
+      <p>Job: {{ assignment.job }}</p>
+      <p>Clock In Time: {{ assignment.clock_in }}</p>
+      <p>Clock Out Time: {{ assignment.clock_out }}</p>
+    </div>
+  </a>
+</div>
+{% empty %}
+<p>Employee does not have any timecards</p>
+{% endfor %} {% endblock %}
