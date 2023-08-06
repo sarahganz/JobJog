@@ -516,7 +516,7 @@ padding-bottom: 2vmin;
     cursor: pointer;
     color: rgb(48, 166, 254);
     font-size: 24px;
-    margin-right: 20px; /* Adjust the margin as needed */
+    margin-right: 20px; 
   }
 }
 
@@ -549,7 +549,7 @@ padding-bottom: 2vmin;
   transform: translateY(0);
 }
 
-/* Additional styling for hover effects */
+
 .styled-link {
   color: #3498db;
   transition: color 0.3s ease;
@@ -560,11 +560,11 @@ padding-bottom: 2vmin;
 }
 
 .img-hover:hover {
-  transform: scale(1.05); /* Slightly larger on hover */
+  transform: scale(1.05); 
   transition: transform 0.3s ease;
 }
 
-/* Define animation keyframes */
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -585,6 +585,6 @@ padding-bottom: 2vmin;
 
 .slideInLeft {
   animation-name: slideInLeft;
-  animation-duration: 1.5s; /* Adjust the duration as needed */
-  animation-timing-function: ease-in-out; /* You can adjust the timing function */
+  animation-duration: 1.5s; 
+  animation-timing-function: ease-in-out; 
 }
