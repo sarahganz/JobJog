@@ -30,7 +30,6 @@ from .forms import (
     EmployerLoginForm,
     EmployeeLoginForm,
     AssignEmployeeForm,
-    CustomEmployeeUpdateForm,
 )
 
 from .models import Job
@@ -369,16 +368,13 @@ class JobCreate(CreateView):
 from django.contrib.auth.forms import UserChangeForm
 
 
-class CustomEmployeeUpdateForm(UserChangeForm):
-    class Meta:
-        model = Employee
-        fields = ["skills", "hourly_rate"]
-
-
 class EmployeeUpdate(UpdateView):
     model = Employee
-    form_class = CustomEmployeeUpdateForm
+    fields = ["skills", "hourly_rate"]
     template_name = "employee_update_form.html"
+
+    def get_success_url(self):
+        return reverse("detail_employee", kwargs={"employee_id": self.object.id})
 
 
 class JobUpdate(UpdateView):
@@ -432,12 +428,6 @@ def assign_employee_to_job(request, job_id):
     }
 
     return render(request, "assign_employee_to_job.html", context)
-
-
-class EmployeeUpdate(UpdateView):
-    model = Employee
-    form_class = CustomEmployeeUpdateForm
-    template_name = "employee_update_form.html"
 
 
 class EmployeeDelete(DeleteView):
