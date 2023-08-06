@@ -7,10 +7,12 @@
         {{ employee.user.first_name }} {{ employee.user.last_name }}
       </h3></span
     >
+    <div class="cardalign">
     <p>Email: {{ employee.user.email }}</p>
     <p>Phone Number: {{ employee.user.phone_number }}</p>
     <p>Skills: {{ employee.skills }}</p>
     <p>Hourly Rate: {{ employee.hourly_rate }}</p>
+    </div>
     <a href="{% url 'employees_update' employee.id %}" class="btn">Edit</a>
     <a href="{% url 'employees_delete' employee.id %}" class="btn">Delete</a>
   </div>
