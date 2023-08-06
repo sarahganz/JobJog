@@ -36,7 +36,7 @@
               </a>
             </li>
           </ul>
-          <ul class="right">
+          <ul class="right" id="nav-menu">
             <li><a href="{% url 'home' %}">Home</a></li>
             <li><a href="{% url 'about' %}">About</a></li>
             <li class="logstyle">
@@ -48,6 +48,7 @@
               <a href="{% url 'login' %}" class="logstyle">Employee Login</a>
             </li>
           </ul>
+          <div class="dropdown-icon right" id="dropdown-icon">&#9776;</div>
         </div>
       </nav>
     </header>
@@ -59,3 +60,12 @@
     </footer>
   </body>
 </html>
+
+<script>
+  document
+    .getElementById("dropdown-icon")
+    .addEventListener("click", function () {
+      var navMenu = document.getElementById("nav-menu");
+      navMenu.classList.toggle("active");
+    });
+</script>

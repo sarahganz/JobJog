@@ -1,6 +1,9 @@
-{% extends 'employer-base.html' %} {% block content %} <br />
+{% extends 'employer-base.html' %} {% block content %}
+
+<br />
 <h1>Welcome, {{ employer.user.first_name }} {{ employer.user.last_name }}!</h1>
-<div class="dashboard-container">
+
+<div class="dashboard-container" class="dashboard-container animated fadeIn">
   <h3>Company: {{ employer.company_name }}</h3>
   <div class="cardalign" id="nopad">
   <p>Email: {{ employer.user.email }}</p>
@@ -8,9 +11,10 @@
 </div>
 </div>
 <br /><br />
-<a href="{% url 'jobs_create' %}" class="btn">Add a Job</a>
-<a href="{% url 'index' %}" class="btn">All Jobs</a>
-<a href="{% url 'invite_employee' %}" class="btn">Invite Employee</a>
-<a href="{% url 'employees_index' %}" class="btn">All Employees</a>
-
+<div class="slideInLeft animated">
+  <a href="{% url 'jobs_create' %}" class="btn">Add a Job</a>
+  <a href="{% url 'index' %}" class="btn">All Jobs</a>
+  <a href="{% url 'invite_employee' %}" class="btn">Invite Employee</a>
+  <a href="{% url 'employees_index' %}" class="btn">All Employees</a>
+</div>
 {% endblock %}

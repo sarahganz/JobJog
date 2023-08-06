@@ -5,7 +5,7 @@
   <br />
   <div class="dev-container">
     <div class="dev-section">
-      <div class="img-container">
+      <div class="img-container img-hover">
         <img class="devpic" src="https://i.imgur.com/U0sI61k.png" alt="Sandy" />
       </div>
       <p>
@@ -25,7 +25,7 @@
     </div>
 
     <div class="dev-section">
-      <div class="img-container">
+      <div class="img-container img-hover">
         <img class="devpic" src="https://i.imgur.com/zNWyPMB.png" alt="Sarah" />
       </div>
       <p>
@@ -45,7 +45,13 @@
     </div>
 
     <div class="dev-section">
-      <img class="devpic" src="https://i.imgur.com/oHTDyxH.jpg" alt="Austin" />
+      <div class="img-container img-hover">
+        <img
+          class="devpic"
+          src="https://i.imgur.com/oHTDyxH.jpg"
+          alt="Austin"
+        />
+      </div>
       <p>Hi! I'm Austin Lew, a fullstack software engineer.</p>
       <p>austinlew1215@gmail.com</p>
       <a href="mailto:austinlew1215@gmail.com" class="styled-link">Email</a>
@@ -59,5 +65,23 @@
     </div>
   </div>
 </div>
+<script>
+  const elements = document.querySelectorAll(".dev-section");
 
+  function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return rect.top < window.innerHeight && rect.bottom >= 0;
+  }
+
+  function animateElements() {
+    elements.forEach((element) => {
+      if (isInViewport(element)) {
+        element.classList.add("animate");
+      }
+    });
+  }
+
+  window.addEventListener("scroll", animateElements);
+  animateElements(); // Initial animation check
+</script>
 {% endblock %}
