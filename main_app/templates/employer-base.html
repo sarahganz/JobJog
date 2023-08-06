@@ -39,19 +39,14 @@
               </a>
             </li>
           </ul>
-          <ul class="right">
-            {% if user.is_authenticated %}
+          <ul class="right" id="nav-menu">
             <li><a href="{% url 'jobs_create' %}">Add a Job</a></li>
             <li><a href="{% url 'index' %}">All Jobs</a></li>
             <li><a href="{% url 'invite_employee' %}">Invite Employee</a></li>
             <li><a href="{% url 'employees_index' %}">All Employees</a></li>
             <li><a href="{% url 'logout' %}" class="logstyle">Log Out</a></li>
-            {% else %}
-            <a href="{% url 'employer_login' %}" class="logstyle"
-              >Employer Login</a
-            >
-            {% endif %}
           </ul>
+          <div class="dropdown-icon right" id="dropdown-icon">&#9776;</div>
         </div>
       </nav>
     </header>
@@ -63,3 +58,11 @@
     </footer>
   </body>
 </html>
+<script>
+  document
+    .getElementById("dropdown-icon")
+    .addEventListener("click", function () {
+      var navMenu = document.getElementById("nav-menu");
+      navMenu.classList.toggle("active");
+    });
+</script>
