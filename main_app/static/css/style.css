@@ -80,7 +80,7 @@ p {
 }
 
 .form {
-  background-color: rgba(207, 186, 191, 0.491);;
+  background-color: rgba(207, 186, 191, 0.491);
   padding-top: 8vmin;
   padding-bottom: 8vmin;
   padding-left: 34vmin;
@@ -89,7 +89,7 @@ p {
 }
 
 form {
-  background-color: rgba(207, 186, 191, 0.491);;
+  background-color: rgba(207, 186, 191, 0.491);
   border-radius: 15px;
   padding-top: 8vmin;
   padding-bottom: 8vmin;
@@ -364,7 +364,7 @@ p {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f5f5f5;
+  background-color:rgba(207, 186, 191, 0.491);
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
@@ -427,7 +427,7 @@ p {
 }
 
 .card {
-  background-color: rgba(207, 186, 191, 0.491);
+  background-color:rgba(207, 186, 191, 0.491);
   border-radius: 20px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
   padding: 5px;
@@ -463,8 +463,8 @@ padding-bottom: 2vmin;
 .card {
   border: 1px solid #ccc;
   border-radius: 10px;
-  background-color: rgba(226, 158, 175, 0.195);
-  overflow: hidden; /* Ensures cards have consistent height */
+  background-color: rgba(207, 186, 191, 0.491);
+  overflow: hidden; 
 }
 
 .card-content {
