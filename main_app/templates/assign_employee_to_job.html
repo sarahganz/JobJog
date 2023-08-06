@@ -7,9 +7,11 @@
     <div class="card">
       <div class="card-content">
         <span class="card-title">{{ employee.user.get_full_name }}</span>
+        <div class="cardalign">
         <p>Skill(s): {{ employee.skills }}</p>
         <p>Hourly Rate: ${{ employee.hourly_rate }}</p>
-        <form method="post">
+      </div>
+        <form class="nocolor" id ="nomarg" method="post">
           {% csrf_token %}
           <input type="hidden" name="employee_id" value="{{ employee.id }}" />
           <button type="submit" name="action" value="assign" class="btn">
@@ -25,12 +27,13 @@
     {% for employee in assigned_employees %}
     <div class="card">
       <div class="card-content">
-        <span class="card-title"
-          >{{ employee.employee.user.get_full_name }}</span
-        >
+        <span class="card-title">
+    {{ employee.employee.user.get_full_name }}</span>
+    <div class="cardalign">
         <p>Skill(s): {{ employee.employee.skills }}</p>
         <p>Hourly Rate: ${{ employee.employee.hourly_rate }}</p>
-        <form method="post">
+        </div>
+        <form class="nocolor" id="nomarg" method="post">
           {% csrf_token %}
           <input
             type="hidden"

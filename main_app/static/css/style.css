@@ -23,6 +23,7 @@ nav {
 
 .logo {
   max-width: 40%;
+  margin-top: -6vmin;
 }
 
 h1 {
@@ -39,47 +40,78 @@ h2 {
   text-transform: capitalize;
 }
 
+
+.homeh2 {
+  font-family: 'Oswald', sans-serif;
+}
+
 h3 {
   font-family: "Sora", sans-serif;
-  color: rgb(14, 35, 68);
+  color: rgb(48, 166, 254);
   font-size: 24px;
   text-transform: capitalize;
+  text-align: center;
 }
 
 p {
-  margin-top: 0; /* Add this line to remove the top margin */
+  margin-top: 0; 
   margin-bottom: 20px;
-  font-family: "Sora", sans-serif;
+  font-family: 'Oswald', sans-serif;
   color: #000000;
 }
 
 .styled-link {
-  color: rgb(224, 82, 119); /* Change to your desired link color */
-  font-size: 16px; /* Change to your desired font size */
-  text-decoration: none; /* Remove default underline */
+  color: rgb(224, 82, 119); 
+  font-size: 16px; 
+  text-decoration: none; 
 }
 
-/* Add a different color when hovering over the link */
+
 .styled-link:hover {
-  color: rgb(14, 35, 68); /* Change to your desired hover color */
+  color: rgb(14, 35, 68); 
 }
 
 .statement {
-  font-size: 22px;
+
   margin-top: -30px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 18px;
+  
 }
 
 .form {
-  margin-left: 250px;
-  margin-right: 250px;
-  background-color: rgba(255, 255, 255, 0.779);
-  border-radius: 15px;
-  padding-top: 80px;
-  padding-bottom: 80px;
-  padding-left: 100px;
-  padding-right: 100px;
-  margin-bottom: 4%;
+   background-color: rgba(207, 186, 191, 0.491);;
+  padding-top: 8vmin;
+  padding-bottom: 8vmin;
+  padding-left: 34vmin;
+  padding-right: 34vmin;
+  margin-bottom: 10vmin;
 }
+
+form {
+  background-color: rgba(207, 186, 191, 0.491);;
+  border-radius: 15px;
+  padding-top: 8vmin;
+  padding-bottom: 8vmin;
+  padding-left: 28vmin;
+  padding-right: 28vmin;
+  margin-bottom: 10vmin;
+  
+}
+#nomarg {
+  margin: auto;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom:0;
+  padding-top:0;
+}
+
+.nocolor{
+  background-color: transparent;
+  margin-top: -10vmin;
+}
+
+
 
 .column {
   float: left;
@@ -162,10 +194,10 @@ button,
   line-height: normal;
 }
 
-/* Button hover effect */
+
 button:hover,
 .btn:hover {
-  background-color: rgba(224, 82, 119, 0.8); /* Slightly transparent */
+  background-color: rgba(224, 82, 119, 0.8); 
   box-shadow: 0px 10px 14px rgba(0, 0, 0, 0.2);
 }
 
@@ -180,6 +212,10 @@ button:hover,
   flex-basis: 48%;
 }
 
+.employer_registration{
+  margin: 0 auto;
+  margin-top: -5vmin;
+}
 footer.page-footer {
   padding-top: 0;
   text-align: right;
@@ -200,12 +236,12 @@ footer.page-footer {
   position: relative;
   display: block;
   margin: auto;
-  border: 1px solid rgba(224, 82, 119); /* Added "solid" and fixed the position of "border" property */
+  border: 1px solid rgba(224, 82, 119); 
 }
 
 .card-title {
   text-transform: capitalize;
-  color: #0e2344;
+  color: rgb(48, 166, 254);
 }
 
 .card-content {
@@ -224,7 +260,7 @@ footer.page-footer {
 }
 
 p {
-  font-size: 18px;
+  font-size: 17px;
 }
 
 .dev-container {
@@ -322,7 +358,7 @@ p {
   }
 }
 
-/* Apply styles to the dashboard container */
+
 .dashboard-container {
   max-width: 800px;
   margin: 0 auto;
@@ -332,13 +368,16 @@ p {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Style for the dashboard header */
+#nopad {
+  padding-left: 0;
+}
+
 .dashboard-header {
   text-align: center;
   margin-bottom: 20px;
 }
 
-/* Style for user information */
+
 .user-info {
   background-color: #ffffff;
   padding: 20px;
@@ -356,7 +395,7 @@ p {
   margin-bottom: 5px;
 }
 
-/* Apply media queries for responsiveness */
+
 @media screen and (max-width: 768px) {
   .dashboard-container {
     padding: 10px;
@@ -371,13 +410,13 @@ p {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  background-color: rgba(226, 158, 175, 0.324);
+  background-color: rgba(207, 186, 191, 0.491);
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: left;
-  align-items: center; /* Center horizontally */
+  align-items: center; 
 }
 
 .user-info {
@@ -387,14 +426,22 @@ p {
 }
 
 .card {
-  background-color: rgba(226, 158, 175, 0.324);
+  background-color: rgba(207, 186, 191, 0.491);
   border-radius: 20px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  padding: 5px;
 }
 
-.form {
-  background-color: rgba(226, 158, 175, 0.324);
+.cardmarg{
+  margin-left: 8vmin;
+  margin-right: 8vmin
 }
+.cardalign {
+text-align: left;
+padding-left: 20vmin;
+padding-bottom: 2vmin;
+}
+ 
 
 .lightblue {
   color: rgb(48, 166, 254);

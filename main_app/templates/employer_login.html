@@ -1,7 +1,11 @@
 {% extends 'base.html' %} {% block content %}
-<h1>Employer Login</h1>
+<h1 class="homeh2">Employer Login</h1>
 <form class="form" method="post">
   {% csrf_token %} {{ form.as_p }}
   <button type="submit">Login</button>
+  <br>
+  <br>
+  Don't have an account?  
+  <a href="{% url 'employer_registration' %}" class="logstyle">Sign Up</a>
 </form>
 {% endblock %}

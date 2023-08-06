@@ -3,16 +3,22 @@
 <h1>Job List</h1>
 
 {% for job in jobs %}
+<div class="cardmarg">
 <div class="card">
   <a href="{% url 'detail' job.id %}">
     <div class="card-content">
       <span class="card-title"><h3>{{ job.description }}</h3></span>
-      <p>Location: {{ job.address }}</p>
-      <p>Date: {{ job.date }}</p>
-      <p>Time: {{ job.time }}</p>
-      <p>Status: {{ job.status }}</p>
+      <div class="card-details">
+        <div class="cardalign">
+        <p>Location: {{ job.address }}</p>
+        <p>Date: {{ job.date }}</p>
+        <p>Time: {{ job.time }}</p>
+        <p>Status: {{ job.status }}</p>
+        </div>
+    </div>
     </div>
   </a>
+</div>
 </div>
 {% endfor %}
 <br />
