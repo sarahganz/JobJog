@@ -15,9 +15,9 @@ JobJog is a user-friendly web application designed to streamline company operati
 
 ##### Key Features
 <ul>
-  <li>The employer can create, edit, and delete jobs</li>
+  <li>Employers can create, edit, and delete jobs</li>
   <li>Employers can invite employees through a link</li>
-  <li>The employer can assign employees to those jobs</li>
+  <li>Employers can assign employees to those jobs</li>
   <li>Employers can update employee information and view their timecards, including their clock in and clock out times.</li>
 </ul>
 <br><br>
