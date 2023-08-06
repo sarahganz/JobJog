@@ -18,24 +18,31 @@
     <a href="{% url 'jobs_delete' job.id %}" class="btn">Delete</a>
   </div>
 </div>
-
+<br /><br />
 <h2>Employees Assigned to This Job</h2>
-{% if assigned_employees %} {% for employee in assigned_employees %}
-<h4>{{ employee.user.get_full_name }}</h4>
-<p>
-  Skill(s): {{ employee.skills }} <br />Hourly Rate: ${{ employee.hourly_rate }}
-</p>
-{% endfor %} {% else %}
-<p>No employees assigned to this job yet.</p>
-{% endif %}
+<div class="employee-grid">
+  {% if assigned_employees %} {% for employee in assigned_employees %}
+  <div class="card">
+    <a href="{% url 'detail_employee' employee.id %}">
+      <div class="card-content">
+        <span class="card-title">
+          <h3 class="lightblue">{{ employee.user.get_full_name }}</h3>
+        </span>
+        <p>Skill(s): {{ employee.skills }}</p>
+        <p>Hourly Rate: ${{ employee.hourly_rate }}</p>
+      </div>
+    </a>
+  </div>
+  {% endfor %} {% else %}
+  <p>No employees assigned to this job yet.</p>
+  {% endif %}
+</div>
 
 <h2>Photos Uploaded by Employees</h2>
 <div>
   {% for photo in job.photo_set.all %}
   <div class="card-panel">
     <img class="responsive-img" src="{{ photo.url }}" />
-    <p>Uploaded by: {{ photo.employee.user.get_full_name }}</p>
-    <p>Uploaded at: {{ photo.created_at }}</p>
   </div>
   {% empty %}
   <p>No photos uploaded by employees for this job.</p>

@@ -1,22 +1,20 @@
-{% extends 'employer-base.html' %}
-
-{% block content %}
+{% extends 'employer-base.html' %} {% block content %}
 
 <style>
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 </style>
 
-  <h1>Delete Job</h1>
+<h1>Delete Job</h1>
 
-  <h4>Are you sure you want to delete <span class="teal-text">{{ object.name }}</span>?</h4>
+<h4>Are you sure you want to delete <span>{{ object.name }}</span>?</h4>
 
-  <form action="" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Yes - Delete" class="btn">
-    <a href="{% url 'detail' job.id %}">Cancel</a>
-  </form>
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" value="Yes - Delete" class="btn" />
+  <a href="{% url 'detail' job.id %}">Cancel</a>
+</form>
 {% endblock %}
