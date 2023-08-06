@@ -1,48 +1,63 @@
-{% extends 'base.html' %}
-
-{% block content %}
-<style>
-body {
-  background-image: url('https://i.imgur.com/4HQeNKv.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-</style>
-<div class="about-wrapper"><h1>About the Developers</h1>
-    <hr>
-<div class="about-container"  >
- <div id="devs" style="margin-right: 4rem;">
-   <div class="img-container"> <img class="devpic" src="https://i.imgur.com/U0sI61k.png" alt="Sandy"> </div>
-    <h4>
-        Hi! I'm Sandy McGee, a fullstack software engineer with expertise in creating efficient, user-friendly applications. 
-        My goal is to  build purposeful software solutions for a brighter future.
-    </h4>
-      <h3>Contact Me</h3>
+{% extends 'base.html' %} {% block content %}
+<div class="about-wrapper">
+  <h1>About the Developers</h1>
+  <hr />
+  <br />
+  <div class="dev-container">
+    <div class="dev-section">
+      <div class="img-container">
+        <img class="devpic" src="https://i.imgur.com/U0sI61k.png" alt="Sandy" />
+      </div>
+      <p>
+        Hi! I'm Sandy McGee, a fullstack software engineer with expertise in
+        creating efficient, user-friendly applications. My goal is to build
+        purposeful software solutions for a brighter future.
+      </p>
       <p>sandyasomcgee@gmail.com</p>
-      <p><a href="https://www.linkedin.com/in/sandymcgee-memphis/">LinkedIn</a></p>
-</div>
+      <a href="mailto:sandyasomcgee@gmail.com" class="styled-link">Email</a>
+      <br />
+      <a
+        href="https://www.linkedin.com/in/sandymcgee-memphis/"
+        target="_blank"
+        class="styled-link"
+        >LinkedIn</a
+      >
+    </div>
 
-<div id="devs" style="margin-right: 4rem; margin-left: 4rem;">
-  <div class="img-container"> <img class="devpic" src="https://i.imgur.com/zNWyPMB.png" alt="Sarah"> </div>
-     <h4>
-        Hi! I'm Sarah Granz, a fullstack software engineer.
-     </h4>
-       <h3>Contact Me</h3>
-       <p>strolisarah@gmail.com</p>
-       <p><a href="https://www.linkedin.com/in/sarah-ganz-software-engineer">LinkedIn</a></p>
+    <div class="dev-section">
+      <div class="img-container">
+        <img class="devpic" src="https://i.imgur.com/zNWyPMB.png" alt="Sarah" />
+      </div>
+      <p>
+        Hi! I'm Sarah Ganz, a fullstack software engineer dedicated to crafting
+        seamless and innovative applications. My passion lies in designing
+        impactful software solutions for a better tomorrow.
+      </p>
+      <p>sarahganzdev@gmail.com</p>
+      <a href="mailto:sarahganzdev@gmail.com" class="styled-link">Email</a>
+      <br />
+      <a
+        href="https://www.linkedin.com/in/sarah-ganz-software-engineer"
+        target="_blank"
+        class="styled-link"
+        >LinkedIn</a
+      >
+    </div>
+
+    <div class="dev-section">
+      <img class="devpic" src="https://i.imgur.com/oHTDyxH.jpg" alt="Austin" />
+      <p>Hi! I'm Austin Lew, a fullstack software engineer.</p>
+      <p>austinlew1215@gmail.com</p>
+      <a href="mailto:austinlew1215@gmail.com" class="styled-link">Email</a>
+      <br />
+      <a
+        href="https://www.linkedin.com/in/austin-lew-software-engineer/"
+        target="_blank"
+        class="styled-link"
+        >LinkedIn</a
+      >
+    </div>
+  </div>
 </div>
-   
-<div id="devs" style="margin-left: 4rem;">
-    <img class="devpic" src="https://i.imgur.com/oHTDyxH.jpg" alt="Austin">
-     <h4>
-        Hi! I'm Austin Lew, a fullstack software engineer.
-    </h4>
-       <h3>Contact Me</h3>
-       <p>austinlew1215@gmail.com</p>
-       <p><a href="https://www.linkedin.com/in/austin-lew-software-engineer/">LinkedIn</a></p>
- </div>
-</div>
-   </div>
 
 {% endblock %}
