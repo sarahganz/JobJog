@@ -10,6 +10,7 @@ JobJog is a user-friendly web application designed to streamline company operati
 ## Website Images
 <br>
 
+<br><br>
 ### Employer's Side of the Application
 <br>
 
@@ -22,7 +23,7 @@ JobJog is a user-friendly web application designed to streamline company operati
 HTML, CSS, JavaScript, Python, Django
 
 <br><br>
-## Challenging 
+## Challenging Code Parts
 <br>
 
 <br><br>
