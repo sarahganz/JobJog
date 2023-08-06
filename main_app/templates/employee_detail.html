@@ -11,13 +11,11 @@
     <p>Phone Number: {{ employee.user.phone_number }}</p>
     <p>Skills: {{ employee.skills }}</p>
     <p>Hourly Rate: {{ employee.hourly_rate }}</p>
-    <a href="{% url 'employee_assignments' employee.id %}" class="btn"
-      >View Employee Timecards</a
-    >
-  </div>
-  <div class="card-action">
     <a href="{% url 'employees_update' employee.id %}" class="btn">Edit</a>
     <a href="{% url 'employees_delete' employee.id %}" class="btn">Delete</a>
+  </div>
+  <div class="card-action">
+    <a href="{% url 'employee_assignments' employee.id %}" class="btn">View Employee Timecards</a>
   </div>
 </div>
 <br />
