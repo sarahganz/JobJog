@@ -1,28 +1,23 @@
 {% extends 'employee-base.html' %} {% block content %}
-<br><br>
+<br />
+<h1>Welcome, {{ employee.user.first_name }} {{ employee.user.last_name }}!</h1>
 <div class="dashboard-container">
-  <div class="dashboard-header">
-    <h1>Welcome, {{ employee.user.first_name }} {{ employee.user.last_name }}!</h1>
-  </div>
-  <div class="user-info">
-    <p>Employed at: {{ employee.employer.company_name }}</p>
-    <p>Email: {{ employee.user.email }}</p>
-    <p>Phone: {{ employee.user.phone_number }}</p>
-  </div>
+  <p>Employed at: {{ employee.employer.company_name }}</p>
+  <p>Email: {{ employee.user.email }}</p>
+  <p>Phone: {{ employee.user.phone_number }}</p>
 </div>
-
-<h2>Assigned Jobs:</h2>
+<br /><br />
+<h2>ASSIGNED JOBS</h2>
 
 {% for assignment in employee.employeeassignment_set.all %}
 <a href="{% url 'job_details' assignment.job.id %}">
-<div class="card">
-  <div class="card-content">
-      <h3>Job: {{ assignment.job.description }}</h3>
-    </a>
-    <p>Address: {{ assignment.job.address }}</p>
-    <p>Date: {{ assignment.job.date }}</p>
-    <p>Time: {{ assignment.job.time }}</p>
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title"><h3>{{ assignment.job.description }}</h3></span>
+      <p>Address: {{ assignment.job.address }}</p>
+      <p>Date: {{ assignment.job.date }}</p>
+      <p>Time: {{ assignment.job.time }}</p>
+    </div>
   </div>
-</div>
 </a>
 {% endfor %} {% endblock %}

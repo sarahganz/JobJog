@@ -46,14 +46,6 @@ h3 {
   text-transform: capitalize;
 }
 
-
-  
-h1 {
-    text-align: center;
-    color:  #38b6ff;
-    font-family: 'Russo One', sans-serif;
-    text-transform: capitalize;
-
 p {
   margin-top: 0; /* Add this line to remove the top margin */
   margin-bottom: 20px;
