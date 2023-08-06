@@ -13,16 +13,23 @@ JobJog is a user-friendly web application designed to streamline company operati
 ### Employer's Side of the Application
 <br>
 
+##### Key Features
+<ul>
+  <li>Employers can create, edit, and delete jobs</li>
+  <li>Employers can invite employees through a link</li>
+  <li>Employers can assign employees to those jobs</li>
+  <li>Employers can update employee information and view their timecards, including their clock in and clock out times.</li>
+</ul>
 <br><br>
 ### Employee's Side of the Application
 
 <br><br>
 ## Technologies Used
 <br>
-HTML, CSS, JavaScript, Python, Django
-
+HTML, CSS, Python, Django, JavaScript
 <br><br>
-## Challenging 
+
+## Challenging Code Parts
 <br>
 
 <br><br>
