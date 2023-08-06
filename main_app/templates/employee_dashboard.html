@@ -13,7 +13,9 @@
 <a href="{% url 'job_details' assignment.job.id %}">
   <div class="card">
     <div class="card-content">
-      <span class="card-title"><h3>{{ assignment.job.description }}</h3></span>
+      <span class="card-title"
+        ><h3 class="lightblue">{{ assignment.job.description }}</h3></span
+      >
       <p>Address: {{ assignment.job.address }}</p>
       <p>Date: {{ assignment.job.date }}</p>
       <p>Time: {{ assignment.job.time }}</p>

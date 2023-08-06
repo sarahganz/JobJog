@@ -1,5 +1,5 @@
 {% extends 'employer-base.html' %} {% block content %} <br />
-<h1>Welcome {{ employer.user.first_name }} {{ employer.user.last_name }}!</h1>
+<h1>Welcome, {{ employer.user.first_name }} {{ employer.user.last_name }}!</h1>
 <div class="dashboard-container">
   <p>Company: {{ employer.company_name }}</p>
   <p>Email: {{ employer.user.email }}</p>

@@ -291,7 +291,7 @@ p {
 }
 
 .logstyle {
-  color: rgb(226, 158, 175);
+  color: rgb(48, 166, 254);
 }
 
 .column {
@@ -371,9 +371,13 @@ p {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  background-color: rgba(226, 158, 175, 0.538);
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background-color: rgba(226, 158, 175, 0.324);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  align-items: center; /* Center horizontally */
 }
 
 .user-info {
@@ -383,7 +387,15 @@ p {
 }
 
 .card {
-  background-color: rgba(226, 158, 175, 0.538);
-  border-radius: 10px;
+  background-color: rgba(226, 158, 175, 0.324);
+  border-radius: 20px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form {
+  background-color: rgba(226, 158, 175, 0.324);
+}
+
+.lightblue {
+  color: rgb(48, 166, 254);
 }
