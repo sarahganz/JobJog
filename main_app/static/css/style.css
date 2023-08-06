@@ -73,7 +73,7 @@ p {
   margin-left: 250px;
   margin-right: 250px;
   background-color: rgba(255, 255, 255, 0.779);
-  border-radius: 15px;
+  border-radius: 20px;
   padding-top: 80px;
   padding-bottom: 80px;
   padding-left: 100px;
@@ -398,4 +398,41 @@ p {
 
 .lightblue {
   color: rgb(48, 166, 254);
+}
+
+.container_join {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.employee-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: rgba(226, 158, 175, 0.195);
+  overflow: hidden; /* Ensures cards have consistent height */
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card-content h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.card-content p {
+  margin: 10px 0;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }

@@ -13,24 +13,16 @@
         <p>Clocked In at: {{ assignment.clock_in }}</p>
         <p>Clocked Out at: {{ assignment.clock_out }}</p>
         {% else %}
-        <h3 style="font-size: 30px" class="teal-text">
-          Clocked In at: {{ assignment.clock_in }}
-        </h3>
-        <div class="card-panel">
-          <div>
-            <a href="{% url 'clock_out' assignment.id %}" class="btn"
-              >Clock Out</a
-            >
-          </div>
+        <h3 class="lightblue">Clocked In at: {{ assignment.clock_in }}</h3>
+        <a href="{% url 'clock_out' assignment.id %}" class="btn"
+          >Clock Out</a
+        >
         </div>
         {% endif %} {% else %}
         <h3 class="lightblue">You are Not Clocked In</h3>
-        <div class="card-panel">
-          <div>
-            <a href="{% url 'clock_in' assignment.id %}" class="btn"
+        <a href="{% url 'clock_in' assignment.id %}" class="btn"
               >Clock In</a
             >
-          </div>
         </div>
         {% endif %}
       </div>
