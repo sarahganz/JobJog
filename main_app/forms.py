@@ -1,5 +1,9 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import (
+    UserCreationForm,
+    AuthenticationForm,
+    UserChangeForm,
+)
 from .models import Job, Employee, STATUSES, CustomUser, Employer
 
 
@@ -126,3 +130,12 @@ class AssignEmployeeForm(forms.Form):
         self.fields[
             "employees"
         ].label_from_instance = lambda obj: obj.user.get_full_name()
+
+
+from django.contrib.auth.forms import UserChangeForm
+
+
+class CustomEmployeeUpdateForm(UserChangeForm):
+    class Meta:
+        model = Employee
+        fields = ["skills", "hourly_rate"]

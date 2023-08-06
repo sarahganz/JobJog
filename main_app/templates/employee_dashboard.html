@@ -8,9 +8,9 @@
 <h2>Assigned Jobs:</h2>
 
 {% for assignment in employee.employeeassignment_set.all %}
+<a href="{% url 'job_details' assignment.job.id %}">
 <div class="card">
   <div class="card-content">
-    <a href="{% url 'job_details' assignment.job.id %}">
       <h3>Job: {{ assignment.job.description }}</h3>
     </a>
     <p>Address: {{ assignment.job.address }}</p>
@@ -18,4 +18,5 @@
     <p>Time: {{ assignment.job.time }}</p>
   </div>
 </div>
+</a>
 {% endfor %} {% endblock %}
