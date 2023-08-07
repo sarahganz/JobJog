@@ -94,7 +94,7 @@
     <h2 class="homeh2">Employer Registration</h2>
     <form class="nocolor" method="post" action="{% url 'employer_registration' %}">
       {% csrf_token %} {{ form.as_p }}
-      <button type="submit">Register</button>
+      <button type="submit" style="margin-top: 10px;">Register</button>
     </form>
   </div>
 </div>
