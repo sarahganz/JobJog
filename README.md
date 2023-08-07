@@ -40,7 +40,16 @@ Job Details/Assigning Employees
 <br><br>
 ### Employee's Side of the Application
 <br>
+Employee Login
 <img width="1438" src="https://github.com/sarahganz/JobJog/assets/134661556/1b0d99ac-bc33-4c89-86ed-085c7c8ed77e">
+<br>
+Welcome Page Employee
+<img width="1438" src="https://github.com/sarahganz/JobJog/assets/134661556/a7dfe6bc-ebbc-4a8a-b351-f80cc2cf595a">
+<br>
+Job Details Page
+<img width="1438" src="https://github.com/sarahganz/JobJog/assets/134661556/25196350-cc98-47f7-bd4e-a98feb3fd7e3">
+<br>
+
 
 
 <br><br>
