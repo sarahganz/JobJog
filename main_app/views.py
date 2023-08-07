@@ -304,21 +304,19 @@ def clock_in(request, assignment_id):
 
 @login_required
 def add_photo(request, job_id):
-    # Get the current employee who is uploading the photo
-    employee = request.user.employee
-
     # photo-file maps to the "name" attr on the <input>
     photo_file = request.FILES.get("photo-file", None)
     if photo_file:
         s3 = boto3.client("s3")
+        # Need a unique "key" (filename)
+        # It needs to keep the same file extension
+        # of the file that was uploaded (.png, .jpeg, etc.)
         key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind(".") :]
         try:
             bucket = os.environ["S3_BUCKET"]
             s3.upload_fileobj(photo_file, bucket, key)
             url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
-
-            # Save the photo with the uploaded_by field and timestamp
-            Photo.objects.create(url=url, job_id=job_id, uploaded_by=employee)
+            Photo.objects.create(url=url, job_id=job_id)
         except Exception as e:
             print("An error occurred uploading file to S3")
             print(e)
