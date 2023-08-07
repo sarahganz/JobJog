@@ -40,7 +40,6 @@ class EmployeeRegistrationForm(UserCreationForm):
 
         if commit:
             user.save()
-            # Employee.objects.create(user=user, skills=skills, hourly_rate=hourly_rate)
 
         return user
 
@@ -49,27 +48,9 @@ class InviteEmployeeForm(forms.Form):
     employee_email = forms.EmailField(label="Employee Email", max_length=254)
 
 
-# class EmployerRegistrationForm(UserCreationForm):
-#     password = forms.CharField(widget=forms.PasswordInput)
-#     company_name = forms.CharField(max_length=100)  # Add company_name field here
-
-#     class Meta(UserCreationForm.Meta):
-#         model = CustomUser
-#         fields = ["username", "email", "phone_number", "password"]
-
-#     def save(self, commit=True):
-#         user = super().save(commit=False)
-#         user.set_password(self.cleaned_data["password"])
-#         if commit:
-#             user.save()
-#             Employer.objects.create(
-#                 user=user, company_name=self.cleaned_data["company_name"]
-#             )  # Update this line
-#         return user
-
 
 class EmployerRegistrationForm(UserCreationForm):
-    company_name = forms.CharField(max_length=100)  # Add company_name field here
+    company_name = forms.CharField(max_length=100)
 
     class Meta(UserCreationForm.Meta):
         model = CustomUser
@@ -96,7 +77,6 @@ class EmployerRegistrationForm(UserCreationForm):
 class EmployerLoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super(EmployerLoginForm, self).__init__(*args, **kwargs)
-        # Customize the labels and attributes of the form fields if needed
         self.fields["username"].label = "Email"
         self.fields["username"].widget.attrs.update(
             {"class": "form-control", "placeholder": "Enter your email"}
@@ -109,7 +89,6 @@ class EmployerLoginForm(AuthenticationForm):
 class EmployeeLoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super(EmployeeLoginForm, self).__init__(*args, **kwargs)
-        # Customize the labels and attributes of the form fields if needed
         self.fields["username"].label = "Email"
         self.fields["username"].widget.attrs.update(
             {"class": "form-control", "placeholder": "Enter your email"}

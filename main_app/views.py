@@ -59,18 +59,14 @@ def employer_registration(request):
         if form.is_valid():
             company_name = form.cleaned_data["company_name"]
             user = form.save()
-
-            # Check if an Employer object already exists for the user
             employer, created = Employer.objects.get_or_create(
                 user=user, defaults={"company_name": company_name}
             )
 
             if not created:
-                # If the Employer object already existed, update the company_name
                 employer.company_name = company_name
                 employer.save()
 
-            # Log in the employer after successful registration
             login(request, user)
 
             return redirect("employer_dashboard")
@@ -87,23 +83,17 @@ def employer_login(request):
             email = form.cleaned_data["username"]
             password = form.cleaned_data["password"]
 
-            # Authenticate employer
             user = authenticate(request, username=email, password=password)
 
             if user is not None:
-                # Check if the user has an associated employer instance
                 employer = Employer.objects.filter(user=user).first()
 
                 if employer:
-                    # If the user is associated with an employer and the provided credentials are valid,
-                    # log in the employer
                     login(request, user)
                     return redirect("employer_dashboard")
                 else:
-                    # If the user is not associated with an employer, display an error message
                     form.add_error("username", "You are not authorized as an employer.")
             else:
-                # If the provided credentials are invalid, display an error message
                 form.add_error("username", "Invalid email or password.")
     else:
         form = EmployerLoginForm()
@@ -118,23 +108,17 @@ def employee_login(request):
             email = form.cleaned_data["username"]
             password = form.cleaned_data["password"]
 
-            # Authenticate employer
             user = authenticate(request, username=email, password=password)
 
             if user is not None:
-                # Check if the user has an associated employee instance
                 employee = Employee.objects.filter(user=user).first()
 
                 if employee:
-                    # If the user is associated with an employee and the provided credentials are valid,
-                    # log in the employee
                     login(request, user)
                     return redirect("employee_dashboard")
                 else:
-                    # If the user is not associated with an employee, display an error message
                     form.add_error("username", "You are not authorized as an employee.")
             else:
-                # If the provided credentials are invalid, display an error message
                 form.add_error("username", "Invalid email or password.")
     else:
         form = EmployeeLoginForm()
@@ -149,10 +133,8 @@ def employer_logout(request):
 
 @login_required
 def employer_dashboard(request):
-    # Retrieve the logged-in employer's data
     employer = request.user.employer
 
-    # Get the list of employees associated with the employer
     employees = employer.employee_set.all()
 
     context = {
@@ -230,10 +212,7 @@ def employee_registration(request, token):
 
 @login_required
 def employee_dashboard(request):
-    # Retrieve the logged-in employer's data
     employee = request.user.employee
-
-    # Get the list of employees associated with the employer
 
     context = {
         "employee": employee,
@@ -246,13 +225,11 @@ def employee_dashboard(request):
 def clock_out(request):
     employee = request.user.employee
 
-    # Find the latest assignment with NULL clock_out value for the employee
     assignment = EmployeeAssignment.objects.filter(
         employee=employee, clock_out__isnull=True
     ).latest("clock_in")
 
     if assignment and assignment.clock_in:
-        # If a valid assignment is found, update its clock_out value
         assignment.clock_out = datetime.now()
         assignment.save()
 
@@ -266,7 +243,7 @@ def job_assignment(request):
             job = form.save()
             return redirect(
                 "employer_dashboard"
-            )  # Redirect to employer dashboard after successful assignment
+            )
     else:
         form = JobAssignmentForm()
 
@@ -292,13 +269,11 @@ def clock_in(request, assignment_id):
 
 @login_required
 def add_photo(request, job_id):
-    # photo-file maps to the "name" attr on the <input>
+
     photo_file = request.FILES.get("photo-file", None)
     if photo_file:
         s3 = boto3.client("s3")
-        # Need a unique "key" (filename)
-        # It needs to keep the same file extension
-        # of the file that was uploaded (.png, .jpeg, etc.)
+
         key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind(".") :]
         try:
             bucket = os.environ["S3_BUCKET"]
@@ -316,7 +291,6 @@ def job_details(request, job_id):
     job = get_object_or_404(Job, pk=job_id)
     employee = request.user.employee
 
-    # Retrieve the assignment for the given job and employee
     assignment = EmployeeAssignment.objects.filter(employee=employee, job=job).first()
 
     return render(request, "job_details.html", {"job": job, "assignment": assignment})
@@ -344,10 +318,8 @@ class JobCreate(CreateView):
     fields = ["description", "address", "date", "time", "status"]
 
     def form_valid(self, form):
-        # Get the logged-in employer and assign it to the job
         form.instance.employer = self.request.user.employer
 
-        # Call the parent class's form_valid method to save the job to the database
         return super().form_valid(form)
 
 
@@ -380,7 +352,6 @@ def employees_index(request):
 
 
 def detail_employee(request, employee_id):
-    # Get the employee object using the provided employee_id
     employee = get_object_or_404(Employee, id=employee_id)
 
     return render(request, "employee_detail.html", {"employee": employee})
