@@ -26,6 +26,10 @@ JobJog is a user-friendly web application designed to streamline company operati
 Employer Dashboard
 <img width="1438" src="https://github.com/sarahganz/JobJog/assets/134447712/9417b368-1466-4a36-8645-06a6f1c45b2b">
 <br>
+View of All Jobs
+<img src="https://github.com/sarahganz/JobJog/assets/134447712/d802b918-b65e-4e95-80a9-d35101ffa6aa">
+
+<br>
 Adding Jobs
 <img width="1438" src="https://github.com/sarahganz/JobJog/assets/134447712/6ec3dd69-ecd1-4c95-a272-2ff7d52e2391">
 
