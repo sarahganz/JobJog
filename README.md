@@ -22,10 +22,8 @@ JobJog is a user-friendly web application designed to streamline company operati
   <li>Employers can assign employees to those jobs</li>
   <li>Employers can update employee information and view their timecards, including their clock in and clock out times</li>
 </ul>
-<img width="1438" src="https://github.com/sarahganz/JobJog/assets/134447712/973fbe49-998e-4ac2-ac32-738681925407">
-<img width="1438" src="https://github.com/sarahganz/JobJog/assets/134447712/ab3cc95b-dd7f-4c9e-8a35-9204a319c36c">
+<img width="1438" src="https://github.com/sarahganz/JobJog/assets/134447712/9417b368-1466-4a36-8645-06a6f1c45b2b">
 
-<img width="1438" src="https://github.com/sarahganz/JobJog/assets/134447712/ab3cc95b-dd7f-4c9e-8a35-9204a319c36c">
 <br><br>
 ### Employee's Side of the Application
 
