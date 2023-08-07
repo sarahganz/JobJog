@@ -92,11 +92,15 @@
 <div class="container_join">
   <div class="employer_registration">
     <h2 class="homeh2">Employer Registration</h2>
-    <form class="nocolor" method="post" action="{% url 'employer_registration' %}">
+    <form
+      class="nocolor"
+      method="post"
+      action="{% url 'employer_registration' %}"
+    >
       {% csrf_token %} {{ form.as_p }}
       <button type="submit">Register</button>
     </form>
   </div>
 </div>
-<br/><br />
+<br /><br />
 {% endblock %}
