@@ -52,7 +52,7 @@ Job Details/Assigning Employees
 <img src="https://github.com/sarahganz/JobJog/assets/134447712/17e6f6aa-0370-4ea3-ac98-c10749a4fbe2">
 <br>
 View Employee Timecards
-<img width="1436" src="https://github.com/sarahganz/JobJog/assets/134447712/ce5db76b-9581-4a1e-87cf-797134b60abf"
+<img width="1436" src="https://github.com/sarahganz/JobJog/assets/134447712/ce5db76b-9581-4a1e-87cf-797134b60abf">
 
 <br><br>
 
