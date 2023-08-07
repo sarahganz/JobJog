@@ -40,7 +40,8 @@ Job Details/Assigning Employees
 <br><br>
 ### Employee's Side of the Application
 <br>
-<img width="1438" src="
+<img width="1438" src="https://github.com/sarahganz/JobJog/assets/134661556/1b0d99ac-bc33-4c89-86ed-085c7c8ed77e">
+
 
 <br><br>
 ## Technologies Used
