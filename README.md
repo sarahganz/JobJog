@@ -9,6 +9,14 @@ JobJog is a user-friendly web application designed to streamline company operati
 
 <br><br>
 
+
+
+## Technologies Used
+
+<br>
+Python, Django, JavaScript, HTML, CSS, Amazon S3 Buckets, Heroku
+<br><br>
+
 ## ERD
 
 <br>
@@ -69,12 +77,6 @@ Job Details Page
 <img width="1438" src="https://github.com/sarahganz/JobJog/assets/134661556/25196350-cc98-47f7-bd4e-a98feb3fd7e3">
 <br>
 
-<br><br>
-
-## Technologies Used
-
-<br>
-HTML, CSS, Python, Django, JavaScript
 <br><br>
 
 ## Challenging Code Parts
