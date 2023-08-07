@@ -31,6 +31,10 @@ Adding Jobs
 <br>
 View of All Jobs
 <img src="https://github.com/sarahganz/JobJog/assets/134447712/d802b918-b65e-4e95-80a9-d35101ffa6aa">
+<br>
+Job Details/Assigning Employees
+<img src="https://github.com/sarahganz/JobJog/assets/134447712/17e6f6aa-0370-4ea3-ac98-c10749a4fbe2"
+
 
 
 <br><br>
