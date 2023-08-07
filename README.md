@@ -82,6 +82,7 @@ Job Details Page
 ## Challenging Code Parts
 
 <br>
+Creating a token to get a custom link to invite employees to your company. 
 
 <img width="1438" src="/main_app/static/images/challenging.png">
 <br><br>
