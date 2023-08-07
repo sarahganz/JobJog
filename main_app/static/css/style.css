@@ -40,9 +40,8 @@ h2 {
   text-transform: capitalize;
 }
 
-
 .homeh2 {
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
 }
 
 h3 {
@@ -54,29 +53,26 @@ h3 {
 }
 
 p {
-  margin-top: 0; 
+  margin-top: 0;
   margin-bottom: 20px;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   color: #000000;
 }
 
 .styled-link {
-  color: rgb(224, 82, 119); 
-  font-size: 16px; 
-  text-decoration: none; 
+  color: rgb(224, 82, 119);
+  font-size: 16px;
+  text-decoration: none;
 }
 
-
 .styled-link:hover {
-  color: rgb(14, 35, 68); 
+  color: rgb(14, 35, 68);
 }
 
 .statement {
-
   margin-top: -30px;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   font-size: 18px;
-  
 }
 
 .form {
@@ -96,23 +92,19 @@ form {
   padding-left: 28vmin;
   padding-right: 28vmin;
   margin-bottom: 10vmin;
-  
 }
 #nomarg {
   margin: auto;
   padding-left: 0;
   padding-right: 0;
-  padding-bottom:0;
-  padding-top:0;
+  padding-bottom: 0;
+  padding-top: 0;
 }
 
-.nocolor{
+.nocolor {
   background-color: transparent;
   margin-top: -10vmin;
-
 }
-
-
 
 .column {
   float: left;
@@ -196,10 +188,9 @@ button,
   line-height: normal;
 }
 
-
 button:hover,
 .btn:hover {
-  background-color: rgba(224, 82, 119, 0.8); 
+  background-color: rgba(224, 82, 119, 0.8);
   box-shadow: 0px 10px 14px rgba(0, 0, 0, 0.2);
 }
 
@@ -214,10 +205,6 @@ button:hover,
   flex-basis: 48%;
 }
 
-.employer_registration{
-  margin: 0 auto;
-  margin-top: -5vmin;
-}
 footer.page-footer {
   padding-top: 0;
   text-align: right;
@@ -238,7 +225,7 @@ footer.page-footer {
   position: relative;
   display: block;
   margin: auto;
-  border: 1px solid rgba(224, 82, 119); 
+  border: 1px solid rgba(224, 82, 119);
 }
 
 .card-title {
@@ -363,12 +350,11 @@ p {
   }
 }
 
-
 .dashboard-container {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  background-color:rgba(207, 186, 191, 0.491);
+  background-color: rgba(207, 186, 191, 0.491);
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
@@ -381,7 +367,6 @@ p {
   text-align: center;
   margin-bottom: 20px;
 }
-
 
 .user-info {
   background-color: #ffffff;
@@ -399,7 +384,6 @@ p {
   font-size: 16px;
   margin-bottom: 5px;
 }
-
 
 @media screen and (max-width: 768px) {
   .dashboard-container {
@@ -421,7 +405,7 @@ p {
   flex-direction: column;
   justify-content: center;
   text-align: left;
-  align-items: center; 
+  align-items: center;
 }
 
 .user-info {
@@ -431,22 +415,21 @@ p {
 }
 
 .card {
-  background-color:rgba(207, 186, 191, 0.491);
+  background-color: rgba(207, 186, 191, 0.491);
   border-radius: 20px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
   padding: 5px;
 }
 
-.cardmarg{
+.cardmarg {
   margin-left: 8vmin;
-  margin-right: 8vmin
+  margin-right: 8vmin;
 }
 .cardalign {
-text-align: left;
-padding-left: 20vmin;
-padding-bottom: 2vmin;
+  text-align: left;
+  padding-left: 20vmin;
+  padding-bottom: 2vmin;
 }
- 
 
 .lightblue {
   color: rgb(48, 166, 254);
@@ -468,7 +451,7 @@ padding-bottom: 2vmin;
   border: 1px solid #ccc;
   border-radius: 10px;
   background-color: rgba(207, 186, 191, 0.491);
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .card-content {
@@ -520,7 +503,7 @@ padding-bottom: 2vmin;
     cursor: pointer;
     color: rgb(48, 166, 254);
     font-size: 24px;
-    margin-right: 20px; 
+    margin-right: 20px;
   }
 }
 
@@ -553,7 +536,6 @@ padding-bottom: 2vmin;
   transform: translateY(0);
 }
 
-
 .styled-link {
   color: #3498db;
   transition: color 0.3s ease;
@@ -564,10 +546,9 @@ padding-bottom: 2vmin;
 }
 
 .img-hover:hover {
-  transform: scale(1.05); 
+  transform: scale(1.05);
   transition: transform 0.3s ease;
 }
-
 
 @keyframes fadeIn {
   from {
@@ -589,6 +570,6 @@ padding-bottom: 2vmin;
 
 .slideInLeft {
   animation-name: slideInLeft;
-  animation-duration: 1.5s; 
-  animation-timing-function: ease-in-out; 
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in-out;
 }
