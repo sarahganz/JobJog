@@ -39,6 +39,8 @@ Job Details/Assigning Employees
 
 <br><br>
 ### Employee's Side of the Application
+<br>
+<img width="1438" src="
 
 <br><br>
 ## Technologies Used
