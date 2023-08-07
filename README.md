@@ -50,6 +50,14 @@ View Employee Timecards
 
 ### Employee's Side of the Application
 
+#### Key Features
+<ul>
+  <li>Employee can view their company, email, phone number, and assigned jobs</li>
+  <li>Employee can view location, date, and time of job</li>
+  <li>Employee can clock in and clock out</li>
+  <li>Employee can view timecard</li>
+  <li>Employee can upload photos of job duty finished</li>
+</ul>
 <br>
 Employee Login
 <img width="1438" src="https://github.com/sarahganz/JobJog/assets/134661556/1b0d99ac-bc33-4c89-86ed-085c7c8ed77e">
