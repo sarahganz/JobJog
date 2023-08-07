@@ -1,21 +1,28 @@
 # JobJog
+
 ![JobJog copy](https://github.com/sarahganz/JobJog/assets/134661556/e591a010-1876-45ee-919c-253dc099e925)
 
-
 ## Website Description
+
 <br>
 JobJog is a user-friendly web application designed to streamline company operations by empowering employers to efficiently manage their employees' assignments and responsibilities. This comprehensive platform allows companies to easily add new employees, assign work duties, and track workforce performance seamlessly.
 
 <br><br>
+
+## ERD
+
+<br>
+<img width="1438" src="/main_app/static/images/ERD.png">
+
 ## Website Images
+
 <br>
 <img width="1438" src="https://github.com/sarahganz/JobJog/assets/134447712/ab3cc95b-dd7f-4c9e-8a35-9204a319c36c">
 
-
 ### Employer's Side of the Application
 
-
 ##### Key Features
+
 <ul>
   <li>Employers can create, edit, and delete jobs</li>
   <li>Employers can invite employees through a link</li>
@@ -34,13 +41,13 @@ View of All Jobs
 <img src="https://github.com/sarahganz/JobJog/assets/134447712/d802b918-b65e-4e95-80a9-d35101ffa6aa">
 <br>
 Job Details/Assigning Employees
-<img src="https://github.com/sarahganz/JobJog/assets/134447712/17e6f6aa-0370-4ea3-ac98-c10749a4fbe2"
+<img src="https://github.com/sarahganz/JobJog/assets/134447712/17e6f6aa-0370-4ea3-ac98-c10749a4fbe2">
 <br>
 View Employee Timecards
 <img width="1436" src="https://github.com/sarahganz/JobJog/assets/134447712/ce5db76b-9581-4a1e-87cf-797134b60abf"
 
-
 <br><br>
+
 ### Employee's Side of the Application
 
 #### Key Features
@@ -62,18 +69,22 @@ Job Details Page
 <img width="1438" src="https://github.com/sarahganz/JobJog/assets/134661556/25196350-cc98-47f7-bd4e-a98feb3fd7e3">
 <br>
 
-
-
 <br><br>
+
 ## Technologies Used
+
 <br>
 HTML, CSS, Python, Django, JavaScript
 <br><br>
 
 ## Challenging Code Parts
+
 <br>
 
+<img width="1438" src="/main_app/static/images/challenging.png">
 <br><br>
+
 ## Link to Website
+
 <br>
 https://jobjog-fd80191af9f7.herokuapp.com/

@@ -172,25 +172,14 @@ def invite_employee(request):
     if request.method == "POST":
         form = InviteEmployeeForm(request.POST)
         if form.is_valid():
-            # Get the email address entered in the form
             employee_email = form.cleaned_data["employee_email"]
-
-            # Generate a unique token for the employee invitation
             token = generate_token()
-
-            # Save the token in the database along with the employer information
             EmployeeInvitation.objects.create(
-                employer=request.user.employer,  # Use request.user.employer
+                employer=request.user.employer,
                 token=token,
                 email=employee_email,
             )
-
-            # Send the email/notification with the invite link to the employee
             invite_link = f"http://{request.get_host()}/employee/registration/{token}/"
-
-            # You can use a library like Django's built-in email support or a third-party library to send the email here
-
-            # Optionally, you can display the link to the employer for copying
             print("Invite Link:", invite_link)
 
             context = {
@@ -215,7 +204,6 @@ def employee_registration(request, token):
         form = EmployeeRegistrationForm(request.POST)
         if form.is_valid() and form.cleaned_data["email"] == invitation.email:
             invitation = EmployeeInvitation.objects.get(token=token)
-            # Create the user account
             hourly_rate = form.cleaned_data["hourly_rate"]
             skills = form.cleaned_data["skills"]
             form.employer = invitation.employer
