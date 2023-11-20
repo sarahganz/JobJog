@@ -90,4 +90,5 @@ Creating a token to get a custom link to invite employees to your company.
 ## Link to Website
 
 <br>
-Check out the live website here: [JobJog](https://jobjog-fd80191af9f7.herokuapp.com/)
+[JobJog](https://jobjog-fd80191af9f7.herokuapp.com/){:target="_blank"}
+
