@@ -1,6 +1,6 @@
 # JobJog
 
-![JobJog copy](https://github.com/sarahganz/JobJog/assets/134661556/e591a010-1876-45ee-919c-253dc099e925)
+![JobJog copy]("main_app/static/images/jobjog-logo.png")
 
 ## Website Description
 
