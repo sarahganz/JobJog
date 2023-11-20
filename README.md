@@ -1,6 +1,6 @@
 # JobJog
 
-![JobJog copy]("main_app/static/images/jobjog-logo.png")
+![JobJog copy](main_app/static/images/jobjog-logo.png)
 
 ## Website Description
 
